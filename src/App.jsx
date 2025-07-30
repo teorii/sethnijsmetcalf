@@ -224,7 +224,7 @@ function App() {
               </p>
               <p>
                 My journey started with founding GFXTheory LLC in 2017, where I've worked with major 
-                companies across real estate, freight, gaming, and tech industries. I'm passionate about 
+                companies across real estate, logistics, gaming, and tech industries. I'm passionate about 
                 creating innovative solutions that combine cutting-edge AI technology with practical business applications.
               </p>
             </motion.div>
