@@ -11,13 +11,16 @@ import {
   Palette,
   Smartphone,
   Globe,
-  Phone
+  Phone,
+  Menu,
+  X
 } from 'lucide-react'
 import './App.css'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +35,7 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
       setActiveSection(sectionId)
+      setIsMobileMenuOpen(false) // Close mobile menu when navigating
     }
   }
 
@@ -87,7 +91,17 @@ function App() {
           >
             GFXTHEORY LLC
           </motion.div>
-          <div className="nav-links">
+          
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="mobile-nav-toggle"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          
+          <div className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
             {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
               <motion.button
                 key={section}
