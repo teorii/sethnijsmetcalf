@@ -508,6 +508,12 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
+.project-image-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .project-image {
   position: relative;
   height: 200px;
@@ -554,6 +560,7 @@ body {
   justify-content: center;
   width: 3rem;
   height: 3rem;
+  pointer-events: none;
 }
 
 .project-link:hover {

@@ -16,6 +16,8 @@ import {
   X
 } from 'lucide-react'
 import './App.css'
+import risencargologo from './assets/RisenCargoLogo.png'
+import jessicasellshomeslogo from './assets/JessicaMLogo.png'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -47,27 +49,27 @@ function App() {
   ]
 
   const projects = [
-    {
-      title: "Project 1",
-      description: "A placeholder project showcasing modern web development techniques and innovative solutions.",
-      tech: ["React", "TypeScript", "Node.js", "MongoDB"],
-      image: "https://placehold.co/500x300",
-      link: "#"
-    },
-    {
-      title: "Project 2",
-      description: "An example project demonstrating full-stack development capabilities and best practices.",
-      tech: ["Python", "Django", "PostgreSQL", "Docker"],
-      image: "https://placehold.co/500x300",
-      link: "#"
-    },
-    {
-      title: "Project 3",
-      description: "A showcase project highlighting data science and machine learning expertise.",
-      tech: ["Python", "TensorFlow", "Pandas", "Scikit-learn"],
-      image: "https://placehold.co/500x300",
-      link: "#"
-    }
+          {
+        title: "Risen Logistics",
+        description: "A comprehensive logistics and freight forwarding website for Risen Cargo. Features include quote requests, service portfolio, and contact forms. Handled complete design, development, and deployment with custom branding and responsive design.",
+        tech: ["React", "HTML", "CSS", "JavaScript", "GoDaddy", "Web3Forms", "Photoshop"],
+        image: risencargologo,
+        link: "https://risencargo.com"
+      },
+          {
+        title: "AI Poker Bot",
+        description: "An intelligent poker bot that makes automated decisions using AI and poker theory. Scrapes live game data, analyzes player statistics, and executes optimal actions through LLM-powered decision making.",
+        tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT", "Gemini"],
+        image: "https://images.unsplash.com/photo-1541278107931-e006523892df?w=500&h=300&fit=crop&crop=center",
+        link: "https://github.com/csong2022/pokernow-gpt"
+      },
+          {
+        title: "Jessica Metcalf Real Estate",
+        description: "A professional real estate website for Jessica Metcalf, serving the San Diego area. Features include property listings, client testimonials, buying/selling guides, and contact forms. Complete website design with SEO optimization and Google Analytics integration.",
+        tech: ["PHP", "Wordpress", "Photoshop", "Wix", "SEO", "MySQL"],
+        image: jessicasellshomeslogo,
+        link: "https://www.jessicasellshomes.com/"
+      }
   ]
 
   const skills = {
@@ -365,14 +367,16 @@ function App() {
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
               >
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} />
-                  <div className="project-overlay">
-                    <a href={project.link} className="project-link">
-                      <ExternalLink size={24} />
-                    </a>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-image-link">
+                  <div className="project-image">
+                    <img src={project.image} alt={project.title} />
+                    <div className="project-overlay">
+                      <div className="project-link">
+                        <ExternalLink size={24} />
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </a>
                 <div className="project-content">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
