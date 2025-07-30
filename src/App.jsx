@@ -38,30 +38,30 @@ function App() {
   const stats = [
     { number: '7+', label: 'Years Experience' },
     { number: '50+', label: 'Projects Completed' },
-    { number: '200+', label: 'Contributors Led' },
-    { number: '15k', label: 'Monthly Savings' }
+    { number: '100%', label: 'Client Satisfaction' },
+    { number: '20+', label: 'Companies Worked With' },
   ]
 
   const projects = [
     {
-      title: "AI Poker Bot",
-      description: "Advanced poker bot using LLMs and Poker theory to make automated decisions on PokerNow.club",
-      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT", "Gemini"],
-      image: "https://images.unsplash.com/photo-1541278107931-e006523892df?w=500&h=300&fit=crop",
+      title: "Project 1",
+      description: "A placeholder project showcasing modern web development techniques and innovative solutions.",
+      tech: ["React", "TypeScript", "Node.js", "MongoDB"],
+      image: "https://placehold.co/500x300",
       link: "#"
     },
     {
-      title: "GFXTheory LLC",
-      description: "Founded design company serving major real estate, freight, gaming, and tech companies",
-      tech: ["React", "JavaScript", "TypeScript", "Tailwind CSS", "HTML/CSS"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop",
+      title: "Project 2",
+      description: "An example project demonstrating full-stack development capabilities and best practices.",
+      tech: ["Python", "Django", "PostgreSQL", "Docker"],
+      image: "https://placehold.co/500x300",
       link: "#"
     },
     {
-      title: "Sentiment Analysis System",
-      description: "Python-based sentiment analysis for company emails with PowerBI integration",
-      tech: ["Python", "SQL", "PowerBI", "Data Cleaning", "Machine Learning"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+      title: "Project 3",
+      description: "A showcase project highlighting data science and machine learning expertise.",
+      tech: ["Python", "TensorFlow", "Pandas", "Scikit-learn"],
+      image: "https://placehold.co/500x300",
       link: "#"
     }
   ]
@@ -70,7 +70,6 @@ function App() {
     "Programming Languages": ["Python", "Java", "C", "JavaScript", "TypeScript", "HTML/CSS", "R", "SQL"],
     "Tools & Platforms": ["Azure DevOps", "Snowflake", "MySQL", "Databricks", "Git", "Google Cloud Platform", "VS Code", "Visual Studio", "IntelliJ", "PostgreSQL"],
     "Libraries & Frameworks": ["pandas", "NumPy", "Matplotlib", "PyTorch", "PySpark", "TensorFlow", "Tailwind", "React", "Node.js", "Django", "RESTful APIs"],
-    "Languages": ["English (Fluent)", "Spanish (Fluent)"]
   }
 
   return (
@@ -123,7 +122,7 @@ function App() {
               Full Stack Developer & CEO
             </h2>
             <p className="hero-description">
-              Passionate about creating innovative solutions that bridge the gap between data science and web development. 
+              Passionate about creating innovative solutions. 
               Currently working at a top AI lab, with expertise in React, Python, and machine learning.
             </p>
             <div className="hero-buttons">
@@ -151,7 +150,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hero-image"
           >
-                          <div className="floating-card">
+              <div className="floating-card">
                 <div className="card-content">
                   <div className="avatar">SM</div>
                   <h3>Seth Metcalf</h3>
@@ -163,7 +162,7 @@ function App() {
                     <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
                       <Linkedin size={20} />
                     </a>
-                    <a href="mailto:smetcalf@berkeley.edu">
+                    <a href="">
                       <Mail size={20} />
                     </a>
                   </div>
@@ -431,7 +430,10 @@ function App() {
             <p>Let's work together on your next project</p>
           </motion.div>
 
-          <div className="contact-content">
+                      <div className="contact-content">
+              <div className="contact-image">
+                <img src="https://placehold.co/1200x800" alt="Contact" />
+              </div>
             <motion.div
               className="contact-info"
               initial={{ opacity: 0, x: -50 }}
@@ -448,12 +450,13 @@ function App() {
               <div className="contact-details">
                 <div className="contact-item">
                   <Mail size={20} />
-                  <a href="mailto:smetcalf@berkeley.edu">smetcalf@berkeley.edu</a>
+                  <a href="">placeholder</a>
                 </div>
-                <div className="contact-item">
+                {/* comment out phone number for now */}
+                {/* <div className="contact-item">
                   <Phone size={20} />
-                  <a href="tel:+16194155664">(619) 415-5664</a>
-                </div>
+                  <a href="tel:+">placeholder</a>
+                </div> */}
                 <div className="contact-item">
                   <Github size={20} />
                   <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">github.com/teorii</a>
@@ -464,14 +467,13 @@ function App() {
                 </div>
               </div>
             </motion.div>
-
-            <motion.div
+            {/* comment out form for now */}
+            {/* <motion.div
               className="contact-form"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-            >
               <form>
                 <div className="form-group">
                   <input type="text" placeholder="Your Name" required />
@@ -494,7 +496,7 @@ function App() {
                   Send Message
                 </motion.button>
               </form>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>
@@ -511,7 +513,7 @@ function App() {
               <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:smetcalf@berkeley.edu">
+              <a href="">
                 <Mail size={20} />
               </a>
             </div>

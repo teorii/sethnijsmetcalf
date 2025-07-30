@@ -177,9 +177,9 @@ body {
 }
 
 .hero-social-links {
-  margin-top: 1rem;
   display: flex;
   gap: 1rem;
+  margin-top: 1rem;
   justify-content: center;
 }
 
@@ -268,9 +268,13 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
+.card-content {
+  /* Styles for card content */
+}
+
 .avatar {
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   background: var(--gradient-secondary);
   border-radius: 50%;
   display: flex;
@@ -345,7 +349,9 @@ body {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 2rem;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .stat-card {
@@ -371,7 +377,7 @@ body {
 
 /* Experience Section */
 .timeline {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -619,6 +625,20 @@ body {
   gap: 4rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.contact-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
 }
 
 .contact-info h3 {
