@@ -169,7 +169,9 @@ function App() {
           >
               <div className="floating-card">
                 <div className="card-content">
-                  <div className="avatar">SM</div>
+                  <div className="avatar-image">
+                    <img src={gfxtheorylogo} alt="GFXTheory Logo"/>
+                  </div>
                   <h3>Seth Metcalf</h3>
                   <p>Full Stack Developer & CEO</p>
                   <div className="hero-social-links">

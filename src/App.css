@@ -292,7 +292,7 @@ body {
   /* Styles for card content */
 }
 
-.avatar {
+.avatar-image {
   width: 200px;
   height: 200px;
   background: var(--gradient-secondary);
@@ -304,6 +304,14 @@ body {
   font-weight: 700;
   margin: 0 auto 1rem;
   box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.avatar-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .scroll-indicator {
@@ -870,7 +878,7 @@ body {
     font-size: 0.95rem;
   }
   
-  .avatar {
+  .avatar-image {
     width: 150px;
     height: 150px;
     font-size: 2rem;
@@ -1031,7 +1039,7 @@ body {
     justify-content: center;
   }
   
-  .avatar {
+  .avatar-image {
     width: 120px;
     height: 120px;
     font-size: 1.75rem;
@@ -1088,7 +1096,7 @@ body {
     font-size: 0.9rem;
   }
   
-  .avatar {
+  .avatar-image {
     width: 100px;
     height: 100px;
     font-size: 1.5rem;
@@ -1149,7 +1157,7 @@ body {
     font-size: 2rem;
   }
   
-  .avatar {
+  .avatar-image {
     width: 100px;
     height: 100px;
     font-size: 1.5rem;
