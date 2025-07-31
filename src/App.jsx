@@ -18,6 +18,7 @@ import {
 import './App.css'
 import risencargologo from './assets/RisenCargoLogo.png'
 import jessicasellshomeslogo from './assets/JessicaMLogo.png'
+import gfxtheorylogo from './assets/gfxtheorylogo.png'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -450,7 +451,7 @@ function App() {
 
                       <div className="contact-content">
               <div className="contact-image">
-                <img src="https://placehold.co/1200x800" alt="Contact" />
+                <img src={gfxtheorylogo} alt="Contact" />
               </div>
             <motion.div
               className="contact-info"
