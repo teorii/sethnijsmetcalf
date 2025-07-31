@@ -181,9 +181,9 @@ function App() {
                     <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
                       <Linkedin size={20} />
                     </a>
-                    <a href="">
+                    {/* <a href="">
                       <Mail size={20} />
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>
@@ -469,12 +469,11 @@ function App() {
               </p>
               
               <div className="contact-details">
-                <div className="contact-item">
+                {/*<div className="contact-item">
                   <Mail size={20} />
                   <a href="">placeholder</a>
                 </div>
-                {/* comment out phone number for now */}
-                {/* <div className="contact-item">
+                 <div className="contact-item">
                   <Phone size={20} />
                   <a href="tel:+">placeholder</a>
                 </div> */}
