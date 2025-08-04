@@ -82,18 +82,11 @@ function App() {
   return (
     <div className="app">
       {/* Navigation */}
-      <motion.nav 
-        className={`navbar ${isScrolled ? 'scrolled' : ''}`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
-          <motion.div 
-            className="nav-logo"
-          >
+          <div className="nav-logo">
             GFXTHEORY LLC
-          </motion.div>
+          </div>
           
           {/* Mobile Menu Toggle */}
           <button 
@@ -118,7 +111,7 @@ function App() {
             ))}
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section */}
       <section id="home" className="hero">
@@ -126,12 +119,7 @@ function App() {
           <div className="gradient-overlay"></div>
         </div>
         <div className="hero-content">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="hero-text"
-          >
+          <div className="hero-text">
             <h1 className="hero-title">
               Hi, I'm <span className="gradient-text">Seth Metcalf</span>
             </h1>
@@ -160,13 +148,8 @@ function App() {
                 Get In Touch
               </motion.button>
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="hero-image"
-          >
+          </div>
+          <div className="hero-image">
               <div className="floating-card">
                 <div className="card-content">
                   <div className="avatar-image">
@@ -187,39 +170,23 @@ function App() {
                   </div>
                 </div>
               </div>
-          </motion.div>
+          </div>
         </div>
-        <motion.div
-          className="scroll-indicator"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
+        <div className="scroll-indicator">
           <ChevronDown size={24} />
-        </motion.div>
+        </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-header"
-          >
+          <div className="section-header">
             <h2>About Me</h2>
             <p>Passionate developer with a unique blend of data science and web development expertise</p>
-          </motion.div>
+          </div>
           
           <div className="about-content">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="about-text"
-            >
+            <div className="about-text">
               <h3>Who I Am</h3>
               <p>
                 I'm a recent graduate from UC Berkeley with a BA in Data Science and Economics, 
@@ -232,30 +199,20 @@ function App() {
                 companies across real estate, logistics, gaming, and tech industries. I'm passionate about 
                 creating innovative solutions that combine cutting-edge AI technology with practical business applications.
               </p>
-            </motion.div>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="stats-grid"
-            >
+            <div className="stats-grid">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   className="stat-card"
                   whileHover={{ scale: 1.05 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
                 >
                   <h3>{stat.number}</h3>
                   <p>{stat.label}</p>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -263,25 +220,13 @@ function App() {
       {/* Experience Section */}
       <section id="experience" className="section bg-alt">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-header"
-          >
+          <div className="section-header">
             <h2>Experience</h2>
             <p>My professional journey in technology and data science</p>
-          </motion.div>
+          </div>
 
           <div className="timeline">
-            <motion.div
-              className="timeline-item"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <div className="timeline-item">
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>Full-Stack Developer</h3>
@@ -295,15 +240,9 @@ function App() {
                   <li>Led onboarding & quality reviews for over 200 contributors (10-person core team); created onboarding documents and led workshops, which shortened average onboarding time and reduced submission re-work by 30%</li>
                 </ul>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="timeline-item"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
+            <div className="timeline-item">
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>Data Scientist/Finance Intern</h3>
@@ -318,15 +257,9 @@ function App() {
                   <li>Programmed a sentiment analysis system in Python for company emails between trusted clients, involving data cleaning, filtering, SQL, and sentiment analysis models; presented findings in PowerBI.</li>
                 </ul>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="timeline-item"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
+            <div className="timeline-item">
               <div className="timeline-content">
                 <div className="timeline-header">
                   <h3>CEO, Web Developer</h3>
@@ -340,7 +273,7 @@ function App() {
                   <li>Expert level experience and understanding of website design, client usability, and modern development practices.</li>
                 </ul>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -348,26 +281,16 @@ function App() {
       {/* Projects Section */}
       <section id="projects" className="section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-header"
-          >
+          <div className="section-header">
             <h2>Featured Projects</h2>
             <p>Some of my recent work and personal projects</p>
-          </motion.div>
+          </div>
 
           <div className="projects-grid">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
                 className="project-card"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
                 whileHover={{ y: -10 }}
               >
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-image-link">
@@ -398,27 +321,14 @@ function App() {
       {/* Skills Section */}
       <section id="skills" className="section bg-alt">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-header"
-          >
+          <div className="section-header">
             <h2>Skills & Technologies</h2>
             <p>Technologies and tools I work with</p>
-          </motion.div>
+          </div>
 
           <div className="skills-grid">
             {Object.entries(skills).map(([category, skillList], index) => (
-              <motion.div
-                key={category}
-                className="skill-category"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
+              <div key={category} className="skill-category">
                 <h3>{category}</h3>
                 <div className="skill-tags">
                   {skillList.map((skill, skillIndex) => (
@@ -431,7 +341,7 @@ function App() {
                     </motion.span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
       </div>
@@ -440,28 +350,16 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="section">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="section-header"
-          >
+          <div className="section-header">
             <h2>Get In Touch</h2>
             <p>Let's work together on your next project</p>
-          </motion.div>
+          </div>
 
                       <div className="contact-content">
               <div className="contact-image">
                 <img src={gfxtheorylogo} alt="Contact" />
               </div>
-            <motion.div
-              className="contact-info"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <div className="contact-info">
               <h3>Let's Connect</h3>
               <p>
                 I'm always interested in new opportunities and exciting projects. 
@@ -486,7 +384,7 @@ function App() {
                   <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">linkedin.com/in/seth-metcalf</a>
                 </div>
               </div>
-            </motion.div>
+            </div>
             {/* comment out form for now */}
             {/* <motion.div
               className="contact-form"
