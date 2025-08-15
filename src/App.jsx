@@ -1,113 +1,94 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Github,
-  Linkedin,
-  Mail, 
-  Download, 
-  ChevronDown,
-  ExternalLink,
-  Code,
-  Palette,
-  Smartphone,
-  Globe,
-  Phone,
-  Menu,
-  X
-} from 'lucide-react'
+import { useState } from 'react'
+import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
 import './App.css'
-import risencargologo from './assets/RisenCargoLogo.png'
-import jessicasellshomeslogo from './assets/JessicaMLogo.png'
 import gfxtheorylogo from './assets/gfxtheorylogo.png'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
       setActiveSection(sectionId)
-      setIsMobileMenuOpen(false) // Close mobile menu when navigating
     }
   }
 
-  const stats = [
-    { number: '7+', label: 'Years Experience' },
-    { number: '50+', label: 'Projects Completed' },
-    { number: '100%', label: 'Client Satisfaction' },
-    { number: '20+', label: 'Companies Worked With' },
-  ]
-
   const projects = [
-          {
-        title: "Risen Logistics",
-        description: "A comprehensive logistics and freight forwarding website for Risen Cargo. Features include quote requests, service portfolio, and contact forms. Handled complete design, development, and deployment with custom branding and responsive design.",
-        tech: ["React", "HTML", "CSS", "JavaScript", "GoDaddy", "Web3Forms", "Photoshop"],
-        image: risencargologo,
-        link: "https://risencargo.com"
-      },
-          {
-        title: "AI Poker Bot",
-        description: "An intelligent poker bot that makes automated decisions using AI and poker theory. Scrapes live game data, analyzes player statistics, and executes optimal actions through LLM-powered decision making.",
-        tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT", "Gemini"],
-        image: "https://images.unsplash.com/photo-1541278107931-e006523892df?w=500&h=300&fit=crop&crop=center",
-        link: "https://github.com/csong2022/pokernow-gpt"
-      },
-          {
-        title: "Jessica Metcalf Real Estate",
-        description: "A professional real estate website for Jessica Metcalf, serving the San Diego area. Features include property listings, client testimonials, buying/selling guides, and contact forms. Complete website design with SEO optimization and Google Analytics integration.",
-        tech: ["PHP", "Wordpress", "Photoshop", "Wix", "SEO", "MySQL"],
-        image: jessicasellshomeslogo,
-        link: "https://www.jessicasellshomes.com/"
-      }
+    {
+      title: "AI Poker Bot",
+      description: "Intelligent poker bot using AI and poker theory. Scrapes live game data, analyzes player statistics, and executes optimal actions through LLM-powered decision making.",
+      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT", "Gemini"],
+      link: "https://github.com/csong2022/pokernow-gpt"
+    },
+    {
+      title: "Risen Logistics",
+      description: "Comprehensive logistics and freight forwarding website. Complete design, development, and deployment with custom branding and responsive design.",
+      tech: ["React", "HTML", "CSS", "JavaScript", "GoDaddy", "Web3Forms"],
+      link: "https://risencargo.com"
+    },
+    {
+      title: "Jessica Metcalf Real Estate",
+      description: "Professional real estate website with property listings, client testimonials, and SEO optimization. Complete website design with Google Analytics integration.",
+      tech: ["PHP", "Wordpress", "Photoshop", "Wix", "SEO", "MySQL"],
+      link: "https://www.jessicasellshomes.com/"
+    }
   ]
 
-  const skills = {
-    "Programming Languages": ["Python", "Java", "C", "JavaScript", "TypeScript", "HTML/CSS", "R", "SQL"],
-    "Tools & Platforms": ["Azure DevOps", "Snowflake", "MySQL", "Databricks", "Git", "Google Cloud Platform", "VS Code", "Visual Studio", "IntelliJ", "PostgreSQL"],
-    "Libraries & Frameworks": ["pandas", "NumPy", "Matplotlib", "PyTorch", "PySpark", "TensorFlow", "Tailwind", "React", "Node.js", "Django", "RESTful APIs"],
-  }
+  const experience = [
+    {
+      role: "Full-Stack Developer",
+      company: "[Top AI Lab]",
+      duration: "January 2025 - Present",
+      location: "San Francisco, CA",
+      achievements: [
+        "Curated web-app data sets, injecting good and bad examples to boost internal model pass-rates",
+        "Reviewed hundreds of React/Next.js/FastAPI codebases, diagnosing state-management and accessibility issues",
+        "Led onboarding & quality reviews for 200+ contributors, reducing submission re-work by 30%"
+      ]
+    },
+    {
+      role: "Data Scientist/Finance Intern",
+      company: "Berkshire Hathaway Homestate Companies",
+      duration: "June 2023 - May 2024",
+      location: "San Francisco, CA",
+      achievements: [
+        "Saved $15k/month by analyzing automated reports to cut unnecessary corporate car and phone usage",
+        "Set up LLMs (BART, Llama, MPT, Vulcan) locally to protect client data",
+        "Programmed sentiment analysis system for company emails with data cleaning and SQL"
+      ]
+    },
+    {
+      role: "CEO, Web Developer",
+      company: "GFXTheory LLC",
+      duration: "August 2017 - December 2024",
+      location: "Remote",
+      achievements: [
+        "Founded design company working with major real estate, freight, gaming, and tech companies",
+        "Expert level experience in React, JavaScript, TypeScript, and modern development practices",
+        "Contracted recurring work for companies with 50+ employees"
+      ]
+    }
+  ]
 
   return (
     <div className="app">
       {/* Navigation */}
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className="navbar">
         <div className="nav-container">
           <div className="nav-logo">
-            GFXTHEORY LLC
+            seth metcalf
           </div>
           
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="mobile-nav-toggle"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-          
-          <div className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-            {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
-              <motion.button
+          <div className="nav-links">
+            {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
+              <button
                 key={section}
                 className={`nav-link ${activeSection === section ? 'active' : ''}`}
                 onClick={() => scrollToSection(section)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </motion.button>
+                {section}
+              </button>
             ))}
           </div>
         </div>
@@ -115,165 +96,70 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="hero">
-        <div className="hero-background">
-          <div className="gradient-overlay"></div>
-        </div>
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Hi, I'm <span className="gradient-text">Seth Metcalf</span>
+              Hi, I'm Seth Metcalf
             </h1>
-            <h2 className="hero-subtitle">
-              Full Stack Developer & CEO
-            </h2>
-            <p className="hero-description">
-              Passionate about creating innovative solutions. 
-              Currently working at a top AI lab, with expertise in React, Python, and machine learning.
+            <p className="hero-subtitle">
+              I work on AI research & full-stack development at a top AI lab.
             </p>
-            <div className="hero-buttons">
-              <motion.button
-                className="btn btn-primary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('projects')}
-              >
-                View My Work
-              </motion.button>
-              <motion.button
-                className="btn btn-secondary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
-              >
-                Get In Touch
-              </motion.button>
+            <p className="hero-description">
+              My contributions: web-app data curation, codebase reviews, contributor onboarding. 
+              Previously worked on data science at Berkshire Hathaway and founded GFXTheory LLC.
+            </p>
+            <div className="hero-links">
+              <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
+                <Github size={20} />
+                github
+              </a>
+              <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
+                <Linkedin size={20} />
+                linkedin
+              </a>
             </div>
           </div>
-          <div className="hero-image">
-              <div className="floating-card">
-                <div className="card-content">
-                  <div className="avatar-image">
-                    <img src={gfxtheorylogo} alt="GFXTheory Logo"/>
-                  </div>
-                  <h3>Seth Metcalf</h3>
-                  <p>Full Stack Developer & CEO</p>
-                  <div className="hero-social-links">
-                    <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
-                      <Github size={20} />
-                    </a>
-                    <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
-                      <Linkedin size={20} />
-                    </a>
-                    {/* <a href="">
-                      <Mail size={20} />
-                    </a> */}
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-        <div className="scroll-indicator">
-          <ChevronDown size={24} />
         </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="section">
         <div className="container">
-          <div className="section-header">
-            <h2>About Me</h2>
-            <p>Passionate developer with a unique blend of data science and web development expertise</p>
-          </div>
-          
-          <div className="about-content">
-            <div className="about-text">
-              <h3>Who I Am</h3>
-              <p>
-                I'm a recent graduate from UC Berkeley with a BA in Data Science and Economics, 
-                currently working as a Full Stack Developer at a top AI lab in San Francisco. 
-                With over 7 years of experience in web development and a strong foundation in data science, 
-                I bring a unique perspective to solving complex technical challenges.
-              </p>
-              <p>
-                My journey started with founding GFXTheory LLC in 2017, where I've worked with major 
-                companies across real estate, logistics, gaming, and tech industries. I'm passionate about 
-                creating innovative solutions that combine cutting-edge AI technology with practical business applications.
-              </p>
-            </div>
-            
-            <div className="stats-grid">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  className="stat-card"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <h3>{stat.number}</h3>
-                  <p>{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <h2>About me</h2>
+          <p>
+            I'm a recent UC Berkeley graduate with a BA in Data Science and Economics, 
+            currently working as a Full-Stack Developer at a top AI lab in San Francisco. 
+            With over 7 years of experience in web development and a strong foundation in data science, 
+            I bring a unique perspective to solving complex technical challenges.
+          </p>
+          <p>
+            My journey started with founding GFXTheory LLC in 2017, where I've worked with major 
+            companies across real estate, logistics, gaming, and tech industries. I'm passionate about 
+            creating innovative solutions that combine cutting-edge AI technology with practical business applications.
+          </p>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="section bg-alt">
+      <section id="experience" className="section">
         <div className="container">
-          <div className="section-header">
-            <h2>Experience</h2>
-            <p>My professional journey in technology and data science</p>
-          </div>
-
-          <div className="timeline">
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3>Full-Stack Developer</h3>
-                  <span className="company">[Top AI Lab]</span>
-                  <span className="duration">January 2025 - Present</span>
+          <h2>Experience</h2>
+          <div className="experience-list">
+            {experience.map((job, index) => (
+              <div key={index} className="experience-item">
+                <div className="experience-header">
+                  <h3>{job.role}</h3>
+                  <span className="company">{job.company}</span>
+                  <span className="duration">{job.duration}</span>
                 </div>
-                <p className="location">San Francisco, CA</p>
+                <p className="location">{job.location}</p>
                 <ul>
-                  <li>Curated web-app data sets, purposefully injecting good and bad examples to boost internal model pass-rates; significant improvements on internal quality benchmarks.</li>
-                  <li>Reviewed hundreds of React/Next.js/FastAPI codebases produced by the model, diagnosing state-management performance, accessibility issues, and modern development practices.</li>
-                  <li>Led onboarding & quality reviews for over 200 contributors (10-person core team); created onboarding documents and led workshops, which shortened average onboarding time and reduced submission re-work by 30%</li>
+                  {job.achievements.map((achievement, i) => (
+                    <li key={i}>{achievement}</li>
+                  ))}
                 </ul>
               </div>
-            </div>
-
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3>Data Scientist/Finance Intern</h3>
-                  <span className="company">Berkshire Hathaway Homestate Companies</span>
-                  <span className="duration">June 2023 - May 2024</span>
-                </div>
-                <p className="location">San Francisco, CA</p>
-                <ul>
-                  <li>Saved the company $15k/month by using analysis of my automated reports to cut unnecessary usage of corporate cars and phones.</li>
-                  <li>Utilized Databricks to explore various LLM tools used in the organization; set up LLMs, including BART, Llama, MPT, Vulcan, etc., to be used locally in order to protect client data.</li>
-                  <li>Tested prompt engineering to explore several proofs of concept use cases such as loss run predictions, categorization, cleaning, legal predictions, etc.</li>
-                  <li>Programmed a sentiment analysis system in Python for company emails between trusted clients, involving data cleaning, filtering, SQL, and sentiment analysis models; presented findings in PowerBI.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="timeline-item">
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3>CEO, Web Developer</h3>
-                  <span className="company">GFXTheory LLC</span>
-                  <span className="duration">August 2017 - December 2024</span>
-                </div>
-                <p className="location">Remote</p>
-                <ul>
-                  <li>Founded a design company that initially drew clients in the gaming space and eventually began contracted work for larger, more established companies (&gt; 50 Employees).</li>
-                  <li>Contracted reoccurring design and development work for major real estate, freight, gaming, and tech companies, working in React, Javascript, HTML, CSS, Tailwind, Typescript, and other industry standards when needed.</li>
-                  <li>Expert level experience and understanding of website design, client usability, and modern development practices.</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -281,163 +167,45 @@ function App() {
       {/* Projects Section */}
       <section id="projects" className="section">
         <div className="container">
-          <div className="section-header">
-            <h2>Featured Projects</h2>
-            <p>Some of my recent work and personal projects</p>
-          </div>
-
-          <div className="projects-grid">
+          <h2>Projects</h2>
+          <div className="projects-list">
             {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                className="project-card"
-                whileHover={{ y: -10 }}
-              >
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-image-link">
-                  <div className="project-image">
-                    <img src={project.image} alt={project.title} />
-                    <div className="project-overlay">
-                      <div className="project-link">
-                        <ExternalLink size={24} />
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <div className="project-content">
+              <div key={index} className="project-item">
+                <div className="project-header">
                   <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="project-tech">
-                    {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink size={16} />
+                  </a>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="section bg-alt">
-        <div className="container">
-          <div className="section-header">
-            <h2>Skills & Technologies</h2>
-            <p>Technologies and tools I work with</p>
-          </div>
-
-          <div className="skills-grid">
-            {Object.entries(skills).map(([category, skillList], index) => (
-              <div key={category} className="skill-category">
-                <h3>{category}</h3>
-                <div className="skill-tags">
-                  {skillList.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skillIndex}
-                      className="skill-tag"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {skill}
-                    </motion.span>
+                <p>{project.description}</p>
+                <div className="project-tech">
+                  {project.tech.map((tech, techIndex) => (
+                    <span key={techIndex} className="tech-tag">{tech}</span>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-      </div>
+        </div>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="section">
         <div className="container">
-          <div className="section-header">
-            <h2>Get In Touch</h2>
-            <p>Let's work together on your next project</p>
-          </div>
-
-                      <div className="contact-content">
-              <div className="contact-image">
-                <img src={gfxtheorylogo} alt="Contact" />
-              </div>
-            <div className="contact-info">
-              <h3>Let's Connect</h3>
-              <p>
-                I'm always interested in new opportunities and exciting projects. 
-                Whether you have a question or just want to say hi, feel free to reach out!
-              </p>
-              
-              <div className="contact-details">
-                {/*<div className="contact-item">
-                  <Mail size={20} />
-                  <a href="">placeholder</a>
-                </div>
-                 <div className="contact-item">
-                  <Phone size={20} />
-                  <a href="tel:+">placeholder</a>
-                </div> */}
-                <div className="contact-item">
-                  <Github size={20} />
-                  <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">github.com/teorii</a>
-                </div>
-                <div className="contact-item">
-                  <Linkedin size={20} />
-                  <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">linkedin.com/in/seth-metcalf</a>
-                </div>
-              </div>
-            </div>
-            {/* comment out form for now */}
-            {/* <motion.div
-              className="contact-form"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              <form>
-                <div className="form-group">
-                  <input type="text" placeholder="Your Name" required />
-                </div>
-                <div className="form-group">
-                  <input type="email" placeholder="Your Email" required />
-                </div>
-                <div className="form-group">
-                  <input type="text" placeholder="Subject" required />
-                </div>
-                <div className="form-group">
-                  <textarea placeholder="Your Message" rows="5" required></textarea>
-                </div>
-                <motion.button
-                  type="submit"
-                  className="btn btn-primary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Send Message
-                </motion.button>
-              </form>
-            </motion.div> */}
+          <h2>Contact</h2>
+          <p>I'm always interested in new opportunities and exciting projects.</p>
+          <div className="contact-links">
+            <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
+              <Github size={20} />
+              github.com/teorii
+            </a>
+            <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={20} />
+              linkedin.com/in/seth-metcalf
+            </a>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <p>&copy; 2024 Seth Metcalf. All rights reserved.</p>
-            <div className="footer-links">
-              <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
-                <Github size={20} />
-              </a>
-              <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
-                <Linkedin size={20} />
-              </a>
-              <a href="">
-                <Mail size={20} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
