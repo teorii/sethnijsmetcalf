@@ -1,15 +1,31 @@
 import { useState } from 'react'
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
 import './App.css'
+import resume from './assets/SethM_August4Resume.pdf'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
+  const handleNavigation = (section) => {
+    // Handle external links
+    if (section === 'resume') {
+      window.open(resume, '_blank')
+      return
+    }
+    if (section === 'linkedin') {
+      window.open('https://linkedin.com/in/seth-metcalf', '_blank')
+      return
+    }
+    if (section === 'github') {
+      window.open('https://github.com/teorii', '_blank')
+      return
+    }
+    
+    // Handle internal section scrolling
+    const element = document.getElementById(section)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
-      setActiveSection(sectionId)
+      setActiveSection(section)
     }
   }
 
@@ -84,7 +100,7 @@ function App() {
               <button
                 key={section}
                 className={`nav-link ${activeSection === section ? 'active' : ''}`}
-                onClick={() => scrollToSection(section)}
+                onClick={() => handleNavigation(section)}
               >
                 {section}
               </button>
