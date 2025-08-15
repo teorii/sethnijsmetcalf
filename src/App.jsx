@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
 import './App.css'
-import gfxtheorylogo from './assets/gfxtheorylogo.png'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -38,7 +37,7 @@ function App() {
   const experience = [
     {
       role: "Full-Stack Developer",
-      company: "[Top AI Lab]",
+      company: "[Prominent AI Lab]",
       duration: "January 2025 - Present",
       location: "San Francisco, CA",
       achievements: [
@@ -81,7 +80,7 @@ function App() {
           </div>
           
           <div className="nav-links">
-            {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
+            {['home', 'about', 'experience', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
               <button
                 key={section}
                 className={`nav-link ${activeSection === section ? 'active' : ''}`}
@@ -102,7 +101,7 @@ function App() {
               Hi, I'm Seth Metcalf
             </h1>
             <p className="hero-subtitle">
-              I work on AI research & full-stack development at a top AI lab.
+              I work on AI research & full-stack development at a prominent AI lab.
             </p>
             <p className="hero-description">
               My contributions: web-app data curation, codebase reviews, contributor onboarding. 
@@ -116,6 +115,10 @@ function App() {
               <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
                 linkedin
+              </a>
+              <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
+                <Mail size={20} />
+                smetcalf@berkeley.edu
               </a>
             </div>
           </div>
@@ -202,6 +205,10 @@ function App() {
             <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
               <Linkedin size={20} />
               linkedin.com/in/seth-metcalf
+            </a>
+            <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
+              <Mail size={20} />
+              smetcalf@berkeley.edu
             </a>
           </div>
         </div>
