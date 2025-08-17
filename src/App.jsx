@@ -1,23 +1,27 @@
 import { useState } from 'react'
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
+import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import './App.css'
 import resume from './assets/SethM_August4Resume.pdf'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleNavigation = (section) => {
     // Handle external links
     if (section === 'resume') {
       window.open(resume, '_blank')
+      setIsMobileMenuOpen(false)
       return
     }
     if (section === 'linkedin') {
       window.open('https://linkedin.com/in/seth-metcalf', '_blank')
+      setIsMobileMenuOpen(false)
       return
     }
     if (section === 'github') {
       window.open('https://github.com/teorii', '_blank')
+      setIsMobileMenuOpen(false)
       return
     }
     
@@ -26,7 +30,12 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
       setActiveSection(section)
+      setIsMobileMenuOpen(false)
     }
+  }
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
   const projects = [
@@ -95,7 +104,16 @@ function App() {
             seth metcalf
           </div>
           
-          <div className="nav-links">
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          
+          <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
             {['home', 'about', 'experience', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
               <button
                 key={section}
@@ -110,20 +128,17 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="hero">
-        <div className="hero-content">
-          <div className="hero-text">
-            <h1 className="hero-title">
-              Hi, I'm Seth Metcalf
-            </h1>
-            <p className="hero-subtitle">
-              I work on AI research & full-stack development at a prominent AI lab.
-            </p>
-            <p className="hero-description">
-              My contributions: web-app data curation, codebase reviews, contributor onboarding. 
-              Previously worked on data science at Berkshire Hathaway and founded GFXTheory LLC.
-            </p>
-            <div className="hero-links">
+      <section id="home" className="section">
+        <div className="container">
+          <h2>Hi, I'm Seth Metcalf</h2>
+          <p>
+            I work on AI research & full-stack development at a prominent AI lab.
+            Previously worked on data science at Berkshire Hathaway and founded GFXTheory LLC.
+          </p>
+          <p>
+            My contributions: web-app data curation, codebase reviews, contributor onboarding. 
+          </p>
+          <div className="hero-links">
               <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
                 github
@@ -137,7 +152,6 @@ function App() {
                 smetcalf@berkeley.edu
               </a>
             </div>
-          </div>
         </div>
       </section>
 
