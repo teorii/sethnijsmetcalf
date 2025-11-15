@@ -148,10 +148,10 @@ function App() {
         <div className="container">
           <h2>Hi, I'm Seth Metcalf</h2>
           <p>
-            I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM evaluation workflows. I care about shipping tools that people actually depend on.
+          I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM evaluation workflows. I care about shipping tools that people actually depend on.
           </p>
           <p>
-          Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting. I specialize in diagnosing failure modes, automating messy workflows, and scaling systems that started as prototypes.
+          Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting. I specialize in diagnosing failure points, automating messy workflows, and scaling systems that started as prototypes.
           </p>
           <p>
           Before that, I ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech. Always open to new opportunies.
