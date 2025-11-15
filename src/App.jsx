@@ -7,20 +7,16 @@ function App() {
   const [activeSection, setActiveSection] = useState('about')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
+  const externalLinks = {
+    resume: resume,
+    linkedin: 'https://linkedin.com/in/seth-metcalf',
+    github: 'https://github.com/teorii'
+  }
+
   const handleNavigation = (section) => {
     // Handle external links
-    if (section === 'resume') {
-      window.open(resume, '_blank')
-      setIsMobileMenuOpen(false)
-      return
-    }
-    if (section === 'linkedin') {
-      window.open('https://linkedin.com/in/seth-metcalf', '_blank')
-      setIsMobileMenuOpen(false)
-      return
-    }
-    if (section === 'github') {
-      window.open('https://github.com/teorii', '_blank')
+    if (externalLinks[section]) {
+      window.open(externalLinks[section], '_blank')
       setIsMobileMenuOpen(false)
       return
     }
@@ -70,7 +66,7 @@ function App() {
       role: "Data Scientist, Compensation Systems",
       company: "Mercor",
       duration: "August 2025 - November 2025",
-      location: "Remote",
+      location: "San Francisco, CA",
       achievements: [
         "Built and maintained compensation infrastructure processing hundreds of thousands in weekly contractor payouts.",
         "Automated manual financial workflows using Airtable systems, SQL reconciliation, and dashboarding.",
@@ -151,17 +147,17 @@ function App() {
           I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM evaluation workflows. I care about shipping tools that people actually depend on.
           </p>
           <p>
-          Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting. I specialize in diagnosing failure points, automating messy workflows, and scaling systems that started as prototypes.
+          Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting.
           </p>
           <p>
           Before that, I ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech. Always open to new opportunies.
           </p>
           <div className="hero-links">
-              <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
+              <a href={externalLinks.github} target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
                 github
               </a>
-              <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
+              <a href={externalLinks.linkedin} target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
                 linkedin
               </a>
@@ -182,10 +178,12 @@ function App() {
               <div key={index} className="experience-item">
                 <div className="experience-header">
                   <h3>{job.role}</h3>
-                  <span className="company">{job.company}</span>
                   <span className="duration">{job.duration}</span>
                 </div>
-                <p className="location">{job.location}</p>
+                <div className="experience-meta">
+                  <span className="company">{job.company}</span>
+                  <span className="location">{job.location}</span>
+                </div>
                 <ul>
                   {job.achievements.map((achievement, i) => (
                     <li key={i}>{achievement}</li>
@@ -228,11 +226,11 @@ function App() {
           <h2>Contact</h2>
           <p>Let's build something. I'm always interested in new opportunities.</p>
           <div className="contact-links">
-            <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
+            <a href={externalLinks.github} target="_blank" rel="noopener noreferrer">
               <Github size={20} />
               github.com/teorii
             </a>
-            <a href="https://linkedin.com/in/seth-metcalf" target="_blank" rel="noopener noreferrer">
+            <a href={externalLinks.linkedin} target="_blank" rel="noopener noreferrer">
               <Linkedin size={20} />
               linkedin.com/in/seth-metcalf
             </a>
@@ -248,3 +246,4 @@ function App() {
 }
 
 export default App
+

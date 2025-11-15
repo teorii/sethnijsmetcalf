@@ -29,11 +29,6 @@ body {
   margin-left: 100px;
 }
 
-/* Ensure all text elements use consistent font */
-h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
-  font-family: var(--font-primary);
-}
-
 .container {
   max-width: 800px;
   margin: 0;
@@ -51,18 +46,17 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   padding: 1rem 0;
-  margin-left: 100px;
 }
 
 .nav-container {
   margin: 0;
   padding: 0 2rem;
+  padding-left: calc(100px + 2rem);
   display: flex;
   align-items: center;
 }
 
 .nav-logo {
-  font-family: var(--font-primary);
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -78,7 +72,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
 .nav-link {
   background: none;
   border: none;
-  font-family: var(--font-primary);
   font-size: 0.875rem;
   color: var(--text-secondary);
   cursor: pointer;
@@ -109,6 +102,7 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
 /* Hero Section */
 #about {
   padding-top: 100px;
+  margin-bottom: 2rem;
 }
 
 .hero-links {
@@ -122,7 +116,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   gap: 0.5rem;
   color: var(--text-secondary);
   text-decoration: none;
-  font-family: var(--font-primary);
   font-size: 0.875rem;
 }
 
@@ -133,6 +126,7 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
 /* Section Styles */
 .section {
   padding: 2rem 0;
+  scroll-margin-top: 100px;
 }
 
 .section h2 {
@@ -140,7 +134,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   font-weight: 600;
   margin-bottom: 2rem;
   color: var(--text-primary);
-  font-family: var(--font-primary);
   text-transform: lowercase;
 }
 
@@ -158,11 +151,10 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
 
 .experience-header {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .experience-header h3 {
@@ -171,28 +163,32 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   color: var(--text-primary);
 }
 
+.experience-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .company {
   color: var(--accent-color);
   font-weight: 500;
-  font-family: var(--font-primary);
   font-size: 0.875rem;
 }
 
 .duration {
   color: var(--text-light);
   font-size: 0.875rem;
-  font-family: var(--font-primary);
 }
 
 .location {
   color: var(--text-secondary);
   font-size: 0.875rem;
-  margin-bottom: 1rem;
 }
 
 .experience-item {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .experience-item ul {
@@ -239,7 +235,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
-  font-family: var(--font-primary);
 }
 
 .project-header a {
@@ -270,7 +265,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.75rem;
-  font-family: var(--font-primary);
   border: 1px solid var(--border-color);
 }
 
@@ -285,7 +279,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   gap: 0.75rem;
   color: var(--text-secondary);
   text-decoration: none;
-  font-family: var(--font-primary);
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
@@ -300,22 +293,14 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
     margin-left: 50px;
   }
   
-  .navbar {
-    margin-left: 50px;
+  .nav-container {
+    padding-left: calc(50px + 2rem);
   }
   
   .nav-links {
     margin-left: 50px;
   }
   
-  .hero {
-    padding: 3rem 1.5rem;
-    padding-top: 100px;
-  }
-  
-  .hero-title {
-    font-size: 2.25rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -323,12 +308,9 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
     margin-left: 20px;
   }
   
-  .navbar {
-    margin-left: 20px;
-  }
-  
   .nav-container {
     padding: 0 1rem;
+    padding-left: calc(20px + 1rem);
   }
   
   /* Show mobile menu toggle */
@@ -377,19 +359,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
     background: rgba(0, 102, 204, 0.1);
   }
   
-  .hero {
-    padding: 2rem 1rem;
-    padding-top: 120px;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.125rem;
-  }
-  
   .hero-links {
     display: block;
   }
@@ -407,7 +376,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
   }
   
   .experience-header h3,
-  .experience-header .company,
   .experience-header .duration {
     display: block;
     margin-bottom: 0.5rem;
@@ -435,12 +403,9 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
     margin-left: 10px;
   }
   
-  .navbar {
-    margin-left: 10px;
-  }
-  
   .nav-container {
     padding: 0 0.5rem;
+    padding-left: calc(10px + 0.5rem);
   }
   
   .nav-links {
@@ -452,22 +417,6 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
     padding: 0.75rem;
   }
   
-  .hero {
-    padding: 1.5rem 0.5rem;
-    padding-top: 140px;
-  }
-  
-  .hero-title {
-    font-size: 1.75rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .hero-description {
-    font-size: 0.9rem;
-  }
   
   .container {
     padding: 0 0.5rem;
@@ -509,16 +458,8 @@ h1, h2, h3, h4, h5, h6, p, a, button, span, li, ul, ol, div {
     margin-left: 5px;
   }
   
-  .navbar {
-    margin-left: 5px;
-  }
-  
-  .hero-title {
-    font-size: 1.5rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.9rem;
+  .nav-container {
+    padding-left: calc(5px + 0.5rem);
   }
   
   .nav-links {
