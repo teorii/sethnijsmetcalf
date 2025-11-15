@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import './App.css'
-import resume from './assets/SethM_August4Resume.pdf'
+import resume from './assets/SethM_Resume.pdf'
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home')
+  const [activeSection, setActiveSection] = useState('about')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleNavigation = (section) => {
@@ -41,34 +41,51 @@ function App() {
   const projects = [
     {
       title: "AI Poker Bot",
-      description: "Intelligent poker bot using AI and poker theory. Scrapes live game data, analyzes player statistics, and executes optimal actions through LLM-powered decision making.",
-      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT", "Gemini"],
-      link: "https://github.com/csong2022/pokernow-gpt"
+      description: "PokerGPT Assistant. An intelligent poker bot for PokerNow that uses ChatGPT to make real-time decisions. Built with TypeScript, integrates with live game data to analyze player behavior and execute actions using LLM-powered decision making.",
+      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT"],
+      link: "https://github.com/teorii/pokernow-gpt"
     },
     {
       title: "Risen Logistics",
-      description: "Comprehensive logistics and freight forwarding website. Complete design, development, and deployment with custom branding and responsive design.",
-      tech: ["React", "HTML", "CSS", "JavaScript", "GoDaddy", "Web3Forms"],
+      description: "Full-stack logistics and freight forwarding website. Built with React, featuring custom branding, responsive design, and integrated contact forms. Complete design, development, and deployment.",
+      tech: ["React", "JavaScript", "CSS", "HTML", "GoDaddy", "Web3Forms"],
       link: "https://risencargo.com"
     },
     {
+      title: "DCG",
+      description: "Modern website built with Next.js and TypeScript. Features server-side rendering, optimized performance, and responsive design. Development build deployed on Netlify. Production deployed on Cloudflare with custom domain configuration.",
+      tech: ["Next.js", "TypeScript", "React", "CSS", "Cloudflare", "Netlify"],
+      link: "https://dcgpros.com"
+    },
+    {
       title: "Jessica Metcalf Real Estate",
-      description: "Professional real estate website with property listings, client testimonials, and SEO optimization. Complete website design with Google Analytics integration.",
-      tech: ["PHP", "Wordpress", "Photoshop", "Wix", "SEO", "MySQL"],
-      link: "https://www.jessicasellshomes.com/"
+      description: "Professional real estate website for San Diego area realtor. Features property listings, client testimonials, buying/selling resources, and contact integration. Complete design, development, and SEO optimization.",
+      tech: ["WordPress", "PHP", "CSS", "JavaScript", "SEO", "Google Analytics"],
+      link: "http://jessicasellshomes.com/"
     }
   ]
 
   const experience = [
     {
-      role: "Full-Stack Developer",
-      company: "[Prominent AI Lab]",
-      duration: "January 2025 - Present",
+      role: "Data Scientist, Compensation Systems",
+      company: "Mercor",
+      duration: "August 2025 - November 2025",
+      location: "Remote",
+      achievements: [
+        "Built end-to-end payment systems processing hundreds of thousands in weekly payouts",
+        "Automated manual workflows with Airtable systems and SQL reconciliation",
+        "Created dashboards that reduced operational support load"
+      ]
+    },
+    {
+      role: "Senior Frontend Developer, LLM Systems",
+      company: "[AI Company]",
+      duration: "January 2025 - July 2025",
       location: "San Francisco, CA",
       achievements: [
-        "Curated web-app data sets, injecting good and bad examples to boost internal model pass-rates",
-        "Reviewed hundreds of React/Next.js/FastAPI codebases, diagnosing state-management and accessibility issues",
-        "Led onboarding & quality reviews for 200+ contributors, reducing submission re-work by 30%"
+        "Improved code assistant accuracy by developing targeted datasets",
+        "Reviewed hundreds of model-generated codebases, fixing state management and performance issues",
+        "Scaled contributor workflows, increasing output quality by 30%"
       ]
     },
     {
@@ -77,20 +94,19 @@ function App() {
       duration: "June 2023 - May 2024",
       location: "San Francisco, CA",
       achievements: [
-        "Saved $15k/month by analyzing automated reports to cut unnecessary corporate car and phone usage",
-        "Set up LLMs (BART, Llama, MPT, Vulcan) locally to protect client data",
-        "Programmed sentiment analysis system for company emails with data cleaning and SQL"
+        "Identified $15k/month in cost savings, presenting directly to CFO",
+        "Deployed LLMs in Databricks while maintaining strict data privacy",
+        "Built sentiment analysis system integrated into PowerBI dashboards"
       ]
     },
     {
-      role: "CEO, Web Developer",
+      role: "Full-Stack Developer, Founder",
       company: "GFXTheory LLC",
-      duration: "August 2017 - December 2024",
+      duration: "2017 - 2025",
       location: "Remote",
       achievements: [
-        "Founded design company working with major real estate, freight, gaming, and tech companies",
-        "Expert level experience in React, JavaScript, TypeScript, and modern development practices",
-        "Contracted recurring work for companies with 50+ employees"
+        "Built production websites and design systems for clients across gaming, real estate, freight, and tech",
+        "Delivered recurring work for companies with 50+ employees"
       ]
     }
   ]
@@ -114,7 +130,7 @@ function App() {
           </button>
           
           <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-            {['home', 'about', 'experience', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
+            {['about', 'experience', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
               <button
                 key={section}
                 className={`nav-link ${activeSection === section ? 'active' : ''}`}
@@ -128,15 +144,20 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="section">
+      <section id="about" className="section">
         <div className="container">
           <h2>Hi, I'm Seth Metcalf</h2>
           <p>
-            I work on AI research & full-stack development at a prominent AI lab.
-            Previously worked on data science at Berkshire Hathaway and founded GFXTheory LLC.
+            UC Berkeley grad (Data Science & Economics) who ships production systems that move real money. 
+            Built payment infrastructure processing hundreds of thousands weekly, improved AI code assistant 
+            accuracy through targeted dataset engineering, and identified $15k/month in cost savings that 
+            went straight to the CFO.
           </p>
           <p>
-            My contributions: web-app data curation, codebase reviews, contributor onboarding. 
+            Founded GFXTheory LLC at 17 and ran it for 8 years, delivering full-stack solutions to companies 
+            with 50+ employees across gaming, real estate, freight, and tech. I combine data science rigor 
+            with production engineering—automating workflows, scaling systems, and debugging complex issues 
+            across the stack. Currently building impactful data products and always open to interesting problems.
           </p>
           <div className="hero-links">
               <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
@@ -152,24 +173,6 @@ function App() {
                 smetcalf@berkeley.edu
               </a>
             </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="section">
-        <div className="container">
-          <h2>About me</h2>
-          <p>
-            I'm a recent UC Berkeley graduate with a BA in Data Science and Economics, 
-            currently working as a Full-Stack Developer at a top AI lab in San Francisco. 
-            With over 7 years of experience in web development and a strong foundation in data science, 
-            I bring a unique perspective to solving complex technical challenges.
-          </p>
-          <p>
-            My journey started with founding GFXTheory LLC in 2017, where I've worked with major 
-            companies across real estate, logistics, gaming, and tech industries. I'm passionate about 
-            creating innovative solutions that combine cutting-edge AI technology with practical business applications.
-          </p>
         </div>
       </section>
 
