@@ -40,28 +40,28 @@ function App() {
 
   const projects = [
     {
-      title: "AI Poker Bot",
-      description: "PokerGPT Assistant. An intelligent poker bot for PokerNow that uses ChatGPT to make real-time decisions. Built with TypeScript, integrates with live game data to analyze player behavior and execute actions using LLM-powered decision making.",
-      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT"],
-      link: "https://github.com/teorii/pokernow-gpt"
-    },
-    {
       title: "Risen Logistics",
-      description: "Full-stack logistics and freight forwarding website. Built with React, featuring custom branding, responsive design, and integrated contact forms. Complete design, development, and deployment.",
+      description: "Full-stack logistics and freight forwarding website with custom branding, responsive UI, integrated contact routing, and production deployment for a live commercial client.",
       tech: ["React", "JavaScript", "CSS", "HTML", "GoDaddy", "Web3Forms"],
       link: "https://risencargo.com"
     },
     {
       title: "DCG",
-      description: "Modern website built with Next.js and TypeScript. Features server-side rendering, optimized performance, and responsive design. Development build deployed on Netlify. Production deployed on Cloudflare with custom domain configuration.",
+      description: "Modern business site built with Next.js and server-side rendering for performance and SEO. Developed reusable components, responsive layouts, and deployment pipelines across Netlify and Cloudflare.",
       tech: ["Next.js", "TypeScript", "React", "CSS", "Cloudflare", "Netlify"],
       link: "https://dcgpros.com"
     },
     {
       title: "Jessica Metcalf Real Estate",
-      description: "Professional real estate website for San Diego area realtor. Features property listings, client testimonials, buying/selling resources, and contact integration. Complete design, development, and SEO optimization.",
+      description: "Professional real estate site featuring property listings, testimonials, and lead-capture workflows. Delivered full design, development, SEO optimization, and Google Analytics integration.",
       tech: ["WordPress", "PHP", "CSS", "JavaScript", "SEO", "Google Analytics"],
       link: "http://jessicasellshomes.com/"
+    },
+    {
+      title: "AI Poker Bot",
+      description: "Built a real-time poker agent for PokerNow that ingests live game state, evaluates opponent behavior, and makes autonomous decisions using a mix of poker heuristics and LLM-driven strategy. Engineered a Puppeteer + API scraping pipeline for low-latency game state capture and implemented a SQLite-backed profile system with strict state validation and safety checks.",
+      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT"],
+      link: "https://github.com/teorii/pokernow-gpt"
     }
   ]
 
@@ -72,9 +72,9 @@ function App() {
       duration: "August 2025 - November 2025",
       location: "Remote",
       achievements: [
-        "Built end-to-end payment systems processing hundreds of thousands in weekly payouts",
-        "Automated manual workflows with Airtable systems and SQL reconciliation",
-        "Created dashboards that reduced operational support load"
+        "Built and maintained compensation infrastructure processing hundreds of thousands in weekly contractor payouts.",
+        "Automated manual financial workflows using Airtable systems, SQL reconciliation, and dashboarding.",
+        "Designed performance and payout dashboards that improved visibility and reduced operational load."
       ]
     },
     {
@@ -83,9 +83,9 @@ function App() {
       duration: "January 2025 - July 2025",
       location: "San Francisco, CA",
       achievements: [
-        "Improved code assistant accuracy by developing targeted datasets",
-        "Reviewed hundreds of model-generated codebases, fixing state management and performance issues",
-        "Scaled contributor workflows, increasing output quality by 30%"
+        "Improved a large-scale LLM code assistant’s accuracy by designing targeted datasets surfacing failure patterns in React/Next.js/FastAPI tasks.",
+        "Reviewed and debugged hundreds of model-generated repositories, diagnosing issues in state management, accessibility, and backend integration.",
+        "Built contributor workflows and review processes that increased throughput and quality by ~30%."
       ]
     },
     {
@@ -94,9 +94,9 @@ function App() {
       duration: "June 2023 - May 2024",
       location: "San Francisco, CA",
       achievements: [
-        "Identified $15k/month in cost savings, presenting directly to CFO",
-        "Deployed LLMs in Databricks while maintaining strict data privacy",
-        "Built sentiment analysis system integrated into PowerBI dashboards"
+        "Identified $15k/month in unused corporate expenses through automated reporting delivered to the CFO.",
+        "Evaluated and deployed internal LLMs (BART, Llama, MPT, Vulcan) in Databricks while maintaining strict data-privacy constraints.",
+        "Built a sentiment-analysis pipeline for client communications and surfaced insights through PowerBI dashboards."
       ]
     },
     {
@@ -105,8 +105,8 @@ function App() {
       duration: "2017 - 2025",
       location: "Remote",
       achievements: [
-        "Built production websites and design systems for clients across gaming, real estate, freight, and tech",
-        "Delivered recurring work for companies with 50+ employees"
+        "Built production websites, design systems, and internal tools for clients across gaming, freight, real estate, and tech.",
+        "Delivered recurring engineering and UX work for companies with 50+ employees, with an emphasis on reliability and maintainability."
       ]
     }
   ]
@@ -148,16 +148,13 @@ function App() {
         <div className="container">
           <h2>Hi, I'm Seth Metcalf</h2>
           <p>
-            UC Berkeley grad (Data Science & Economics) who ships production systems that move real money. 
-            Built payment infrastructure processing hundreds of thousands weekly, improved AI code assistant 
-            accuracy through targeted dataset engineering, and identified $15k/month in cost savings that 
-            went straight to the CFO.
+            I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM evaluation workflows. I care about shipping tools that people actually depend on.
           </p>
           <p>
-            Founded GFXTheory LLC at 17 and ran it for 8 years, delivering full-stack solutions to companies 
-            with 50+ employees across gaming, real estate, freight, and tech. I combine data science rigor 
-            with production engineering—automating workflows, scaling systems, and debugging complex issues 
-            across the stack. Currently building impactful data products and always open to interesting problems.
+          Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting. I specialize in diagnosing failure modes, automating messy workflows, and scaling systems that started as prototypes.
+          </p>
+          <p>
+          Before that, I ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech. Always open to new opportunies.
           </p>
           <div className="hero-links">
               <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
@@ -203,7 +200,7 @@ function App() {
       {/* Projects Section */}
       <section id="projects" className="section">
         <div className="container">
-          <h2>Projects</h2>
+          <h2>Recent Projects</h2>
           <div className="projects-list">
             {projects.map((project, index) => (
               <div key={index} className="project-item">
@@ -229,7 +226,7 @@ function App() {
       <section id="contact" className="section">
         <div className="container">
           <h2>Contact</h2>
-          <p>I'm always interested in new opportunities and exciting projects.</p>
+          <p>Let's build something. I'm always interested in new opportunities.</p>
           <div className="contact-links">
             <a href="https://github.com/teorii" target="_blank" rel="noopener noreferrer">
               <Github size={20} />
