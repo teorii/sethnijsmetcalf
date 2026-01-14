@@ -26,13 +26,16 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-left: 100px;
+  margin-left: clamp(10px, 8vw, 100px);
+  margin-right: clamp(10px, 8vw, 100px);
+  transition: margin-left 0.15s ease, margin-right 0.15s ease;
 }
 
 .container {
   max-width: 800px;
   margin: 0;
-  padding: 0 2rem;
+  padding: 0 clamp(0.5rem, 2vw, 2rem);
+  transition: padding 0.15s ease;
 }
 
 /* Navigation */
@@ -50,10 +53,12 @@ body {
 
 .nav-container {
   margin: 0;
-  padding: 0 2rem;
-  padding-left: calc(100px + 2rem);
+  padding: 0;
+  padding-left: calc(clamp(10px, 8vw, 100px) + clamp(0.5rem, 2vw, 2rem));
+  padding-right: clamp(10px, 8vw, 100px);
   display: flex;
   align-items: center;
+  transition: padding-left 0.15s ease, padding-right 0.15s ease;
 }
 
 .nav-logo {
@@ -66,7 +71,7 @@ body {
 .nav-links {
   display: flex;
   gap: 1.5rem;
-  margin-left: 100px;
+  margin-left: clamp(10px, 8vw, 100px);
 }
 
 /* Ensure nav-links are always hidden in mobile unless explicitly opened */
@@ -101,12 +106,15 @@ body {
   cursor: pointer;
   padding: 0;
   margin-left: auto;
+  margin-right: 0;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
   flex-shrink: 0;
   box-sizing: border-box;
+  position: relative;
+  right: 0;
 }
 
 .mobile-menu-toggle svg {
@@ -377,25 +385,11 @@ body {
 }
 
 @media (max-width: 1024px) {
-  body {
-    margin-left: 50px;
-  }
-  
-  .nav-container {
-    padding-left: calc(50px + 2rem);
-  }
-  
+  /* Spacing now handled by fluid clamp() values */
 }
 
 @media (max-width: 768px) {
-  body {
-    margin-left: 20px;
-  }
-  
-  .nav-container {
-    padding: 0 1rem;
-    padding-left: calc(20px + 1rem);
-  }
+  /* Spacing now handled by fluid clamp() values */
   
   .hero-links {
     display: block;
@@ -437,14 +431,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  body {
-    margin-left: 10px;
-  }
-  
-  .nav-container {
-    padding: 0 0.5rem;
-    padding-left: calc(10px + 0.5rem);
-  }
+  /* Spacing now handled by fluid clamp() values */
   
   .nav-links {
     padding: 1.5rem;
@@ -492,13 +479,7 @@ body {
 }
 
 @media (max-width: 360px) {
-  body {
-    margin-left: 5px;
-  }
-  
-  .nav-container {
-    padding-left: calc(5px + 0.5rem);
-  }
+  /* Spacing now handled by fluid clamp() values */
   
   .nav-links {
     padding: 1rem;
