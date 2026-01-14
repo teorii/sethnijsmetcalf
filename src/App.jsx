@@ -199,7 +199,7 @@ function App() {
         <div className="container">
           <h2>Hi, I'm Seth Metcalf</h2>
           <p>
-          I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM evaluation workflows. I care about shipping tools that people actually depend on.
+          I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM tools. I care about shipping tools that people actually depend on.
           </p>
           <p>
           Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting.
@@ -216,9 +216,9 @@ function App() {
                 <Linkedin size={20} />
                 linkedin
               </a>
-              <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
+              <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
                 <Mail size={20} />
-                smetcalf@berkeley.edu
+                seth@metcalf.pro
               </a>
             </div>
         </div>
@@ -289,9 +289,9 @@ function App() {
               <Linkedin size={20} />
               linkedin.com/in/seth-metcalf
             </a>
-            <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
               <Mail size={20} />
-              smetcalf@berkeley.edu
+              seth@metcalf.pro
             </a>
           </div>
         </div>
