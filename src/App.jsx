@@ -37,9 +37,15 @@ function App() {
   const projects = [
     {
       title: "Serving Good Check-In System",
-      description: "Comprehensive check-in and number assignment system for a nonprofit food market serving thousands weekly. Built with real-time features, automated group management, admin dashboard, and automated systems via cron jobs. Handles complex user registration, market scheduling, and blacklist management with full Row Level Security.",
+      description: "Comprehensive check-in and number assignment system for a nonprofit food market serving thousands weekly. Built with real-time features, automated group management, admin dashboard, and automated systems via cron jobs. Handles complex user registration, market scheduling, and admin management with full Row Level Security. DEMO SOON",
       tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "Shadcn UI"],
       link: "#"
+    },
+    {
+      title: "Currency Exchange Rate Tracker",
+      description: "Full-stack currency tracking application with real-time exchange rates, historical data analysis, and TradingView-style interactive charts. Features automated hourly data fetching via background jobs, currency pair management, and a RESTful API. Built with FastAPI backend and React frontend with Redux state management.",
+      tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Redux", "Tailwind CSS", "Recharts"],
+      link: "https://github.com/teorii/currency-tracker"
     },
     {
       title: "Risen Logistics",
