@@ -36,6 +36,12 @@ function App() {
 
   const projects = [
     {
+      title: "Serving Good Check-In System",
+      description: "Comprehensive check-in and number assignment system for a nonprofit food market serving thousands weekly. Built with real-time features, automated group management, admin dashboard, and automated systems via cron jobs. Handles complex user registration, market scheduling, and blacklist management with full Row Level Security.",
+      tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "Shadcn UI"],
+      link: "#"
+    },
+    {
       title: "Risen Logistics",
       description: "Full-stack logistics and freight forwarding website with custom branding, responsive UI, integrated contact routing, and production deployment for a live commercial client.",
       tech: ["React", "JavaScript", "CSS", "HTML", "GoDaddy", "Web3Forms"],
