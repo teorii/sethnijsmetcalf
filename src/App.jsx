@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import './App.css'
 import resume from './assets/SethM_Resume.pdf'
@@ -6,6 +6,16 @@ import resume from './assets/SethM_Resume.pdf'
 function App() {
   const [activeSection, setActiveSection] = useState('about')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  // Close mobile menu on window resize to prevent flash bug
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileMenuOpen(false)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const externalLinks = {
     resume: resume,
