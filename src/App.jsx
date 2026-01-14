@@ -102,12 +102,12 @@ function App() {
       tech: ["Next.js", "TypeScript", "React", "CSS", "Cloudflare", "Netlify"],
       link: "https://dcgpros.com"
     },
-    {
-      title: "Jessica Metcalf Real Estate",
-      description: "Professional real estate site featuring property listings, testimonials, and lead-capture workflows. Delivered full design, development, SEO optimization, and Google Analytics integration.",
-      tech: ["WordPress", "PHP", "CSS", "JavaScript", "SEO", "Google Analytics"],
-      link: "http://jessicasellshomes.com/"
-    },
+    // {
+    //   title: "Jessica Metcalf Real Estate",
+    //   description: "Professional real estate site featuring property listings, testimonials, and lead-capture workflows. Delivered full design, development, SEO optimization, and Google Analytics integration.",
+    //   tech: ["WordPress", "PHP", "CSS", "JavaScript", "SEO", "Google Analytics"],
+    //   link: "http://jessicasellshomes.com/"
+    // },
     {
       title: "AI Poker Bot",
       description: "Built a real-time poker agent for PokerNow that ingests live game state, evaluates opponent behavior, and makes autonomous decisions using a mix of poker heuristics and LLM-driven strategy. Engineered a Puppeteer + API scraping pipeline for low-latency game state capture and implemented a SQLite-backed profile system with strict state validation and safety checks.",
