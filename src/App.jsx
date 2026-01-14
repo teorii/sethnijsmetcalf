@@ -7,14 +7,47 @@ function App() {
   const [activeSection, setActiveSection] = useState('about')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  // Close mobile menu on window resize to prevent flash bug
+  // Close mobile menu on window resize and breakpoint changes to prevent flash bug
   useEffect(() => {
+    let resizeTimeout
     const handleResize = () => {
+      // Immediately close menu and disable transitions during resize
+      setIsMobileMenuOpen(false)
+      document.body.classList.add('resizing')
+      
+      // Re-enable transitions after resize completes
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        document.body.classList.remove('resizing')
+      }, 100)
+    }
+
+    // Use media query to detect breakpoint changes
+    const mediaQuery = window.matchMedia('(max-width: 1200px)')
+    const handleMediaChange = () => {
+      setIsMobileMenuOpen(false)
+      document.body.classList.add('resizing')
+      setTimeout(() => {
+        document.body.classList.remove('resizing')
+      }, 100)
+    }
+
+    // Close on resize
+    window.addEventListener('resize', handleResize, { passive: true })
+    // Close when entering mobile breakpoint
+    mediaQuery.addEventListener('change', handleMediaChange)
+
+    // Also close immediately if we're already in mobile view
+    if (mediaQuery.matches) {
       setIsMobileMenuOpen(false)
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      mediaQuery.removeEventListener('change', handleMediaChange)
+      clearTimeout(resizeTimeout)
+      document.body.classList.remove('resizing')
+    }
   }, [])
 
   const externalLinks = {
