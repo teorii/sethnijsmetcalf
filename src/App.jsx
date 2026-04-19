@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
+import { Github, Linkedin, Mail, ExternalLink, Menu, X, Globe } from 'lucide-react'
 import './App.css'
 import resume from './assets/SethM_Resume.pdf'
 
@@ -79,9 +79,9 @@ function App() {
 
   const projects = [
     {
-      title: "Serving Good Check-In System",
-      description: "Comprehensive check-in and number assignment system for a nonprofit food market serving thousands weekly. Built with real-time features, automated group management, admin dashboard, and automated systems via cron jobs. Handles complex user registration, market scheduling, and admin management with full Row Level Security. DEMO SOON",
-      tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "Shadcn UI"],
+      title: "Serving Good Market Check-In",
+      description: "Community food market operations app: SMS OTP sign-up, check-in with shopping-group choices, and a full admin dashboard (members, schedules, check-ins, groups, blacklist). Place-in-line numbers batch-assign after each window via Supabase Edge Functions. React frontend with TanStack Query, React Hook Form, and Zod. Supabase backend with PostgreSQL and Edge Functions. Twilio for SMS OTPs.",
+      tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "React Hook Form", "Zod", "Supabase", "PostgreSQL", "Edge Functions", "Twilio"],
       link: "#"
     },
     {
@@ -110,54 +110,66 @@ function App() {
     // },
     {
       title: "AI Poker Bot",
-      description: "Built a real-time poker agent for PokerNow that ingests live game state, evaluates opponent behavior, and makes autonomous decisions using a mix of poker heuristics and LLM-driven strategy. Engineered a Puppeteer + API scraping pipeline for low-latency game state capture and implemented a SQLite-backed profile system with strict state validation and safety checks.",
-      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite", "ChatGPT"],
+      description: "Built an autonomous poker-playing agent that ingests live game state and makes real-time decisions using poker heuristics and LLM-based strategy. Engineered Puppeteer + PokerNow API scraping to capture player actions and board state with minimal latency. Created a SQLite-backed opponent profiling system with state validation and safety checks to ensure consistent in-game actions.",
+      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite"],
       link: "https://github.com/teorii/pokernow-gpt"
+    }
+  ]
+
+  const education = [
+    {
+      school: "University of California, Berkeley",
+      degree: "B.A. in Data Science & Economics",
+      duration: "Aug 2020 — May 2024",
+      location: "Berkeley, CA",
+      detail: "Selected coursework: Machine Learning, Probability, Econometrics, Data Structures, Statistical Prediction."
     }
   ]
 
   const experience = [
     {
-      role: "Data Scientist, Compensation Systems",
+      role: "Software Engineer",
       company: "Mercor",
-      duration: "August 2025 - November 2025",
+      duration: "Aug 2025 — Present",
       location: "San Francisco, CA",
       achievements: [
-        "Built and maintained compensation infrastructure processing hundreds of thousands in weekly contractor payouts.",
-        "Automated manual financial workflows using Airtable systems, SQL reconciliation, and dashboarding.",
-        "Designed performance and payout dashboards that improved visibility and reduced operational load."
+        "Built and maintained the end-to-end bonus payment system for 100s of contractors, validating weekly payouts totaling $100,000+.",
+        "Designed Airtable systems using linked records, rollups, and nested conditionals to automate major portions of a previously manual workflow.",
+        "Used SQL and Excel (VLOOKUP, INDEX/MATCH, SUMIFS, pivot tables) to reconcile relational datasets across Airtable, HEX, and Excel exports.",
+        "Built performance and payout dashboards to improve contractor visibility and reduce operational support load."
       ]
     },
     {
-      role: "Senior Frontend Developer, LLM Systems",
+      role: "Senior Frontend Developer",
       company: "[AI Company]",
-      duration: "January 2025 - July 2025",
+      duration: "Jan 2025 — Jul 2025",
       location: "San Francisco, CA",
       achievements: [
-        "Improved a large-scale LLM code assistant’s accuracy by designing targeted datasets surfacing failure patterns in React/Next.js/FastAPI tasks.",
-        "Reviewed and debugged hundreds of model-generated repositories, diagnosing issues in state management, accessibility, and backend integration.",
-        "Built contributor workflows and review processes that increased throughput and quality by ~30%."
+        "Improved accuracy and pass rates of a large-scale, chat-based code assistant by developing targeted datasets that revealed common failure patterns in React/Next.js/FastAPI tasks.",
+        "Reviewed and debugged 100s of model-generated full-stack codebases, identifying issues in state management, accessibility, and performance.",
+        "Resolved model-generated bugs across Django, sympy, scikit-learn, and other libraries, refining the model’s behavior in realistic coding scenarios.",
+        "Designed onboarding and review workflows for 200+ contributors, increasing throughput and output quality by ~30%."
       ]
     },
     {
-      role: "Data Scientist/Finance Intern",
+      role: "Data Science Intern",
       company: "Berkshire Hathaway Homestate Companies",
-      duration: "June 2023 - May 2024",
+      duration: "June 2023 — May 2024",
       location: "San Francisco, CA",
       achievements: [
-        "Identified $15k/month in unused corporate expenses through automated reporting delivered to the CFO.",
-        "Evaluated and deployed internal LLMs (BART, Llama, MPT, Vulcan) in Databricks while maintaining strict data-privacy constraints.",
-        "Built a sentiment-analysis pipeline for client communications and surfaced insights through PowerBI dashboards."
+        "Identified $15k/month in unused corporate phone and car expenses through automated reporting and presented findings directly to the CFO.",
+        "Set up and evaluated LLMs (BART, Llama, MPT, Vulcan, etc.) in Databricks for internal use while maintaining strict client-data privacy.",
+        "Built a sentiment-analysis system for client communications (Python + SQL) and integrated results into PowerBI dashboards used for ongoing internal monitoring."
       ]
     },
     {
       role: "Full-Stack Developer, Founder",
       company: "GFXTheory LLC",
-      duration: "2017 - 2025",
+      duration: "2017 — 2025",
       location: "Remote",
       achievements: [
-        "Built production websites, design systems, and internal tools for clients across gaming, freight, real estate, and tech.",
-        "Delivered recurring engineering and UX work for companies with 50+ employees, with an emphasis on reliability and maintainability."
+        "Built and maintained production websites and design systems for clients in gaming, real estate, freight, and tech, using React, TypeScript, Tailwind, and standard web tooling.",
+        "Delivered recurring development and UX work for companies with 50+ employees, focusing on usability, responsiveness, and maintainability."
       ]
     }
   ]
@@ -181,7 +193,7 @@ function App() {
           </button>
           
           <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-            {['about', 'experience', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
+            {['about', 'experience', 'education', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
               <button
                 key={section}
                 className={`nav-link ${activeSection === section ? 'active' : ''}`}
@@ -202,10 +214,10 @@ function App() {
           I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM tools. I care about shipping tools that people actually depend on.
           </p>
           <p>
-          Recently, I built compensation infrastructure that processes hundreds of thousands of dollars in weekly payouts, engineered targeted datasets that improved a large code-assistant model's pass rate, and uncovered $15k/month in operational savings through automated reporting.
+          I'm a software engineer at Mercor, where I built and maintain the bonus payment system behind weekly payouts to 100s of contractors. I've also engineered targeted datasets that improved a large code assistant's accuracy, and uncovered $15k/month in operational savings through automated reporting.
           </p>
           <p>
-          Before that, I ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech. Always open to new opportunies.
+          Before that, I ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech. Always open to new opportunities.
           </p>
           <div className="hero-links">
               <a href={externalLinks.github} target="_blank" rel="noopener noreferrer">
@@ -216,9 +228,13 @@ function App() {
                 <Linkedin size={20} />
                 linkedin
               </a>
-              <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
+              <a href="https://sethnijsmetcalf.com/" target="_blank" rel="noopener noreferrer">
+                <Globe size={20} />
+                sethnijsmetcalf.com
+              </a>
+              <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
                 <Mail size={20} />
-                seth@metcalf.pro
+                smetcalf@berkeley.edu
               </a>
             </div>
         </div>
@@ -244,6 +260,28 @@ function App() {
                     <li key={i}>{achievement}</li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="section">
+        <div className="container">
+          <h2>Education</h2>
+          <div className="experience-list">
+            {education.map((entry, index) => (
+              <div key={index} className="experience-item">
+                <div className="experience-header">
+                  <h3>{entry.school}</h3>
+                  <span className="duration">{entry.duration}</span>
+                </div>
+                <div className="experience-meta">
+                  <span className="company">{entry.degree}</span>
+                  <span className="location">{entry.location}</span>
+                </div>
+                <p className="education-detail">{entry.detail}</p>
               </div>
             ))}
           </div>
@@ -289,9 +327,9 @@ function App() {
               <Linkedin size={20} />
               linkedin.com/in/seth-metcalf
             </a>
-            <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
               <Mail size={20} />
-              seth@metcalf.pro
+              smetcalf@berkeley.edu
             </a>
           </div>
         </div>

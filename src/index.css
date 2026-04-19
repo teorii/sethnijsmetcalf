@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Avoid horizontal nudge when the vertical scrollbar appears after first paint */
+  scrollbar-gutter: stable;
 }
 
 body {
