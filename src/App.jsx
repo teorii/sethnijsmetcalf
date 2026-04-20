@@ -134,7 +134,7 @@ function App() {
       location: "San Francisco, CA",
       achievements: [
         "Built and maintained end-to-end bonus payment system for hundreds of contractors across Airtable, HEX, and Excel, validating and sending weekly payouts exceeding $100K.",
-        "Reviewed over 1,000 vibe-coded git pushes and project submissions, checking correctness, performance, and security before being merged into production.",
+        "Conducted over 1,000 code reviews on pull requests and projects, giving feedback on correctness, performance, and security before being merged into production.",
         "Built performance and payout dashboards in Airtable and PowerBI to improve contractor visibility and reduce Support team work load."
       ]
     },
@@ -213,7 +213,7 @@ function App() {
           I'm a full-stack engineer and data scientist who builds production systems end-to-end. From frontend interfaces to backend APIs, pipelines, and LLM tools. I care about shipping tools that people actually depend on.
           </p>
           <p>
-          Currently, I'm a contractor software engineer at Mercor and focus on improving large LLMs, as well as building my skillset in working with AI tools.
+          Currently, I'm a contractor software engineer at Mercor and focus on improving large LLMs, as well as building my skillset in working with AI tools. 
           </p>
           <p>
           I previously founded and ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech.
