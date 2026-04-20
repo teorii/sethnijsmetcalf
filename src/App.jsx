@@ -110,7 +110,7 @@ function App() {
     // },
     {
       title: "AI Poker Bot",
-      description: "Built an autonomous poker-playing agent that ingests live game state and makes real-time decisions using poker heuristics and LLM-based strategy. Engineered Puppeteer + PokerNow API scraping to capture player actions and board state with minimal latency. Created a SQLite-backed opponent profiling system with state validation and safety checks to ensure consistent in-game actions.",
+      description: "Built an autonomous poker-playing agent with friends back in college that ingests live game state and makes real-time decisions using poker heuristics and LLM-based strategy. Engineered Puppeteer + PokerNow API scraping to capture player actions and board state with minimal latency. Created a SQLite-backed opponent profiling system with state validation and safety checks to ensure consistent in-game actions.",
       tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite"],
       link: "https://github.com/teorii/pokernow-gpt"
     }
@@ -133,20 +133,19 @@ function App() {
       duration: "Aug 2025 — Present",
       location: "San Francisco, CA",
       achievements: [
-        "Built and maintained the end-to-end bonus payment system for 100s of contractors, validating weekly payouts totaling $100,000+.",
-        "Designed Airtable systems using linked records, rollups, and nested conditionals to automate major portions of a previously manual workflow.",
-        "Used SQL and Excel (VLOOKUP, INDEX/MATCH, SUMIFS, pivot tables) to reconcile relational datasets across Airtable, HEX, and Excel exports.",
-        "Built performance and payout dashboards to improve contractor visibility and reduce operational support load."
+        "Built and maintained end-to-end bonus payment system for hundreds of contractors across Airtable, HEX, and Excel, validating and sending weekly payouts exceeding $100K.",
+        "Reviewed over 1,000 vibe-coded git pushes and project submissions, checking correctness, performance, and security before being merged into production.",
+        "Built performance and payout dashboards in Airtable and PowerBI to improve contractor visibility and reduce Support team work load."
       ]
     },
     {
-      role: "Senior Frontend Developer",
+      role: "Senior Frontend Developer, LLM Systems",
       company: "[AI Company]",
       duration: "Jan 2025 — Jul 2025",
       location: "San Francisco, CA",
       achievements: [
         "Improved accuracy and pass rates of a large-scale, chat-based code assistant by developing targeted datasets that revealed common failure patterns in React/Next.js/FastAPI tasks.",
-        "Reviewed and debugged 100s of model-generated full-stack codebases, identifying issues in state management, accessibility, and performance.",
+        "Reviewed and debugged hundreds of model-generated full-stack codebases, identifying issues in state management, accessibility, and performance.",
         "Resolved model-generated bugs across Django, sympy, scikit-learn, and other libraries, refining the model’s behavior in realistic coding scenarios.",
         "Designed onboarding and review workflows for 200+ contributors, increasing throughput and output quality by ~30%."
       ]
@@ -211,30 +210,26 @@ function App() {
         <div className="container">
           <h2>Hi, I'm Seth Metcalf</h2>
           <p>
-          I'm a full-stack engineer and data scientist who builds production systems end-to-end — from frontend interfaces to backend APIs, pipelines, and LLM tools. I care about shipping tools that people actually depend on.
+          I'm a full-stack engineer and data scientist who builds production systems end-to-end. From frontend interfaces to backend APIs, pipelines, and LLM tools. I care about shipping tools that people actually depend on.
           </p>
           <p>
-          I'm a software engineer at Mercor, where I built and maintain the bonus payment system behind weekly payouts to 100s of contractors. I've also engineered targeted datasets that improved a large code assistant's accuracy, and uncovered $15k/month in operational savings through automated reporting.
+          Currently, I'm a contractor software engineer at Mercor and focus on improving large LLMs, as well as building my skillset in working with AI tools.
           </p>
           <p>
-          Before that, I ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech. Always open to new opportunities.
+          I previously founded and ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech.
           </p>
           <div className="hero-links">
-              <a href={externalLinks.github} target="_blank" rel="noopener noreferrer">
+              <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
-                github
+                teorii
               </a>
-              <a href={externalLinks.linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={"https://linkedin.com/in/seth-metcalf"} target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
-                linkedin
+                seth-metcalf
               </a>
-              <a href="https://sethnijsmetcalf.com/" target="_blank" rel="noopener noreferrer">
-                <Globe size={20} />
-                sethnijsmetcalf.com
-              </a>
-              <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
+              <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
                 <Mail size={20} />
-                smetcalf@berkeley.edu
+                seth@metcalf.pro
               </a>
             </div>
         </div>
@@ -319,17 +314,17 @@ function App() {
           <h2>Contact</h2>
           <p>Let's build something. I'm always interested in new opportunities.</p>
           <div className="contact-links">
-            <a href={externalLinks.github} target="_blank" rel="noopener noreferrer">
+            <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
               <Github size={20} />
               github.com/teorii
             </a>
-            <a href={externalLinks.linkedin} target="_blank" rel="noopener noreferrer">
+            <a href={"https://linkedin.com/in/seth-metcalf"} target="_blank" rel="noopener noreferrer">
               <Linkedin size={20} />
               linkedin.com/in/seth-metcalf
             </a>
-            <a href="mailto:smetcalf@berkeley.edu" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
               <Mail size={20} />
-              smetcalf@berkeley.edu
+              seth@metcalf.pro
             </a>
           </div>
         </div>
