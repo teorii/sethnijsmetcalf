@@ -1,6 +1,6 @@
 # Seth Metcalf
 
-> Full-stack engineer and data scientist. Builds production systems end to end: frontend interfaces, backend APIs, data pipelines, and LLM tooling.
+> Full-stack engineer. Builds production systems end to end: frontend interfaces, backend APIs, data pipelines, and LLM tooling.
 
 ## Sections
 

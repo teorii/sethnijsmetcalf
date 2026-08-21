@@ -124,8 +124,20 @@ function App() {
   const projects = [
     {
       title: "Serving Good Market Check-In",
-      description: "Community food market operations app: SMS OTP sign-up, check-in with shopping-group choices, and a full admin dashboard (members, schedules, check-ins, groups, blacklist). Place-in-line numbers batch-assign after each window via Supabase Edge Functions. React frontend with TanStack Query, React Hook Form, and Zod. Supabase backend with PostgreSQL and Edge Functions. Twilio for SMS OTPs.",
-      tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "React Hook Form", "Zod", "Supabase", "PostgreSQL", "Edge Functions", "Twilio"],
+      description: "Check-in system a community food market runs on-site during market hours. Members sign up and check in with an SMS code, pick a shopping group, and get a randomized place in line once the window closes. Admin side covers members, schedules, groups, messaging, blacklist, and a QR scanner.",
+      tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zod", "Supabase", "PostgreSQL", "Row-Level Security", "Edge Functions", "Twilio", "Vitest"],
+      link: "https://app.servinggood.org/"
+    },
+    {
+      title: "Risen IQ",
+      description: "Internal operations platform a freight forwarding company runs day to day. TMS, WMS, KPI dashboards, quote and domestic desks, SOP management, and a PWA for shift turnover. Five user roles, MFA on admin actions, audit logging, and scheduled KPI syncs from their email tooling.",
+      tech: ["JavaScript", "Supabase", "PostgreSQL", "Row-Level Security", "Netlify Functions", "PWA", "Anthropic API"],
+      link: null
+    },
+    {
+      title: "BreakLedger",
+      description: "Ledger app for card-break streamers and the agency that manages them. Tracks purchases, expenses, stream-by-stream profit, and payouts, with a separate workspace per streamer. Inventory is derived from transactions rather than stored, and a nightly job pulls card prices so valuations stay current.",
+      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Supabase", "PostgreSQL", "Drizzle ORM", "Cloudflare Workers"],
       link: null
     },
     {
@@ -177,10 +189,10 @@ function App() {
       duration: "Aug 2025 — Present",
       location: "San Francisco, CA",
       achievements: [
-        "Built and maintained end-to-end bonus payment system for hundreds of contractors across Airtable, HEX, and Excel, validating and sending weekly payouts exceeding $100K.",
+        "Built and maintained the end-to-end bonus payment system for one of the company's larger projects, validating and sending weekly payouts exceeding $100K to hundreds of contractors across Airtable, HEX, and Excel.",
+        "Designed evaluation tasks that find where frontier models break on realistic software engineering work, writing the reference implementation and scoring rubric for each.",
         "Conducted over 1,000 code reviews on pull requests and projects, giving feedback on correctness, performance, and security before being merged into production.",
-        "Built performance and payout dashboards in Airtable and PowerBI to improve contractor visibility and reduce Support team workload.",
-        "Designed evaluation tasks that find where frontier models break on realistic frontend engineering work, writing the reference implementation and scoring rubric for each."
+        "Built performance and payout dashboards in Airtable and PowerBI to improve contractor visibility and reduce Support team workload."
       ]
     },
     {
@@ -189,8 +201,8 @@ function App() {
       duration: "2017 — Present",
       location: "Remote",
       achievements: [
+        "Shipped full-stack operations apps that businesses run on daily: customer check-in platforms, internal dashboards, and the admin tooling their teams work out of, built on Postgres with role-based access and audit logging.",
         "Built and maintained production websites and design systems for clients in gaming, real estate, freight, and tech, using React, TypeScript, Tailwind, and standard web tooling.",
-        "Shipped full-stack operations apps that businesses run on daily: customer check-in platforms, internal dashboards, and admin tooling with role-based access, audit logging, SMS authentication, and serverless APIs.",
         "Delivered recurring development and UX work for companies with 50+ employees, focusing on usability, responsiveness, and maintainability."
       ]
     },
@@ -201,9 +213,9 @@ function App() {
       location: "San Francisco, CA",
       achievements: [
         "Improved accuracy and pass rates of a large-scale, chat-based code assistant by developing targeted datasets that revealed common failure patterns in React/Next.js/FastAPI tasks.",
-        "Reviewed and debugged hundreds of model-generated full-stack codebases, identifying issues in state management, accessibility, and performance.",
+        "Designed onboarding and review workflows for 200+ contributors, increasing throughput and output quality by ~30%.",
         "Resolved model-generated bugs across Django, sympy, scikit-learn, and other libraries, refining the model’s behavior in realistic coding scenarios.",
-        "Designed onboarding and review workflows for 200+ contributors, increasing throughput and output quality by ~30%."
+        "Reviewed and debugged hundreds of model-generated full-stack codebases, identifying issues in state management, accessibility, and performance."
       ]
     },
     {
@@ -213,8 +225,8 @@ function App() {
       location: "San Francisco, CA",
       achievements: [
         "Identified $15k/month in unused corporate phone and car expenses through automated reporting and presented findings directly to the CFO.",
-        "Set up and evaluated LLMs (BART, Llama, MPT, Vulcan, etc.) in Databricks for internal use while maintaining strict client-data privacy.",
-        "Built a sentiment-analysis system for client communications (Python + SQL) and integrated results into PowerBI dashboards used for ongoing internal monitoring."
+        "Built a sentiment-analysis system for client communications (Python + SQL) and integrated results into PowerBI dashboards used for ongoing internal monitoring.",
+        "Set up and evaluated LLMs (BART, Llama, MPT, Vulcan, etc.) in Databricks for internal use while maintaining strict client-data privacy."
       ]
     }
   ]
@@ -272,13 +284,13 @@ function App() {
           <div className="container">
             <h2>Hi, I'm Seth Metcalf</h2>
             <p>
-            I'm a full-stack engineer and data scientist who builds production systems end-to-end: frontend interfaces, backend APIs, data pipelines, and LLM tools. I care about shipping things people actually depend on.
+            I'm a full-stack engineer who builds production systems end-to-end: frontend interfaces, backend APIs, data pipelines, and LLM tools. I care about shipping things people actually depend on.
             </p>
             <p>
-            Currently, I'm a contract software engineer at Mercor, where I build the payment systems behind large-scale LLM training and review production code across hundreds of contributor projects.
+            Through GFXTheory, which I've run since 2017, I build and maintain the software small businesses run on: a check-in platform a community food market uses on-site, and an internal operations platform a freight forwarding company works out of every day. Both are live with real users, and I maintain them end to end.
             </p>
             <p>
-            I've also run GFXTheory LLC since 2017, designing and developing production websites, dashboards, and internal tools for companies across gaming, logistics, real estate, and tech.
+            I've also contracted at Mercor since 2025. I built the contractor bonus payment system on one of their larger projects, which sent weekly payouts over $100K. These days I work as a software engineer designing evaluation tasks that push the limits of frontier models.
             </p>
             <div className="hero-links">
                 <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
