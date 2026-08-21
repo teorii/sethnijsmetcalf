@@ -1,53 +1,64 @@
-import { useState, useEffect } from 'react'
-import { Github, Linkedin, Mail, ExternalLink, Menu, X, Globe } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import './App.css'
 import resume from './assets/SethM_Resume.pdf'
+
+const SECTIONS = ['about', 'experience', 'education', 'projects', 'contact']
+const SHORTCUT_LABEL = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘K' : 'ctrl K'
 
 function App() {
   const [activeSection, setActiveSection] = useState('about')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false)
+  const [paletteQuery, setPaletteQuery] = useState('')
+  const [paletteIndex, setPaletteIndex] = useState(0)
+  const paletteResultsRef = useRef(null)
 
-  // Close mobile menu on window resize and breakpoint changes to prevent flash bug
+  // Close the mobile menu when the layout crosses the breakpoint, suppressing
+  // the panel transition so it does not animate mid-resize
   useEffect(() => {
-    let resizeTimeout
-    const handleResize = () => {
-      // Immediately close menu and disable transitions during resize
-      setIsMobileMenuOpen(false)
-      document.body.classList.add('resizing')
-      
-      // Re-enable transitions after resize completes
-      clearTimeout(resizeTimeout)
-      resizeTimeout = setTimeout(() => {
-        document.body.classList.remove('resizing')
-      }, 100)
-    }
-
-    // Use media query to detect breakpoint changes
     const mediaQuery = window.matchMedia('(max-width: 1200px)')
-    const handleMediaChange = () => {
+    let transitionTimeout
+
+    const handleBreakpointChange = () => {
       setIsMobileMenuOpen(false)
       document.body.classList.add('resizing')
-      setTimeout(() => {
+      clearTimeout(transitionTimeout)
+      transitionTimeout = setTimeout(() => {
         document.body.classList.remove('resizing')
       }, 100)
     }
 
-    // Close on resize
-    window.addEventListener('resize', handleResize, { passive: true })
-    // Close when entering mobile breakpoint
-    mediaQuery.addEventListener('change', handleMediaChange)
-
-    // Also close immediately if we're already in mobile view
-    if (mediaQuery.matches) {
-      setIsMobileMenuOpen(false)
-    }
-
+    mediaQuery.addEventListener('change', handleBreakpointChange)
     return () => {
-      window.removeEventListener('resize', handleResize)
-      mediaQuery.removeEventListener('change', handleMediaChange)
-      clearTimeout(resizeTimeout)
+      mediaQuery.removeEventListener('change', handleBreakpointChange)
+      clearTimeout(transitionTimeout)
       document.body.classList.remove('resizing')
     }
+  }, [])
+
+  // Keep the nav highlight in sync with whichever section is most visible
+  useEffect(() => {
+    const sections = SECTIONS.map((id) => document.getElementById(id)).filter(Boolean)
+
+    const ratios = {}
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          ratios[entry.target.id] = entry.intersectionRatio
+        })
+        const [id, ratio] = Object.entries(ratios).reduce((best, current) =>
+          current[1] > best[1] ? current : best
+        )
+        if (ratio > 0) {
+          setActiveSection(id)
+        }
+      },
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
   }, [])
 
   const externalLinks = {
@@ -56,20 +67,53 @@ function App() {
     github: 'https://github.com/teorii'
   }
 
-  const handleNavigation = (section) => {
-    // Handle external links
-    if (externalLinks[section]) {
-      window.open(externalLinks[section], '_blank')
-      setIsMobileMenuOpen(false)
-      return
+  const navItems = [
+    ...SECTIONS.map((id) => ({ id, href: `#${id}` })),
+    ...Object.entries(externalLinks).map(([id, href]) => ({ id, href, external: true }))
+  ]
+
+  const paletteFilter = paletteQuery.trim().toLowerCase()
+  const paletteResults = paletteFilter
+    ? navItems.filter(({ id }) => id.includes(paletteFilter))
+    : navItems
+
+  // Command palette: cmd/ctrl+K from anywhere, "/" when not typing, esc to close
+  useEffect(() => {
+    const handleShortcut = (event) => {
+      const isTyping = event.target?.closest?.('input, textarea')
+
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        setIsPaletteOpen((open) => !open)
+      } else if (event.key === '/' && !isTyping) {
+        event.preventDefault()
+        setIsPaletteOpen(true)
+      } else if (event.key === 'Escape') {
+        setIsPaletteOpen(false)
+      }
     }
-    
-    // Handle internal section scrolling
-    const element = document.getElementById(section)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setActiveSection(section)
-      setIsMobileMenuOpen(false)
+
+    window.addEventListener('keydown', handleShortcut)
+    return () => window.removeEventListener('keydown', handleShortcut)
+  }, [])
+
+  // Every visit to the palette starts from a clean slate
+  useEffect(() => {
+    if (isPaletteOpen) {
+      setPaletteQuery('')
+      setPaletteIndex(0)
+    }
+  }, [isPaletteOpen])
+
+  const handlePaletteKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      if (paletteResults.length === 0) return
+      const step = event.key === 'ArrowDown' ? 1 : -1
+      setPaletteIndex((index) => (index + step + paletteResults.length) % paletteResults.length)
+    } else if (event.key === 'Enter') {
+      event.preventDefault()
+      paletteResultsRef.current?.querySelectorAll('a')[paletteIndex]?.click()
     }
   }
 
@@ -82,7 +126,7 @@ function App() {
       title: "Serving Good Market Check-In",
       description: "Community food market operations app: SMS OTP sign-up, check-in with shopping-group choices, and a full admin dashboard (members, schedules, check-ins, groups, blacklist). Place-in-line numbers batch-assign after each window via Supabase Edge Functions. React frontend with TanStack Query, React Hook Form, and Zod. Supabase backend with PostgreSQL and Edge Functions. Twilio for SMS OTPs.",
       tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "React Hook Form", "Zod", "Supabase", "PostgreSQL", "Edge Functions", "Twilio"],
-      link: "#"
+      link: null
     },
     {
       title: "Currency Exchange Rate Tracker",
@@ -135,12 +179,24 @@ function App() {
       achievements: [
         "Built and maintained end-to-end bonus payment system for hundreds of contractors across Airtable, HEX, and Excel, validating and sending weekly payouts exceeding $100K.",
         "Conducted over 1,000 code reviews on pull requests and projects, giving feedback on correctness, performance, and security before being merged into production.",
-        "Built performance and payout dashboards in Airtable and PowerBI to improve contractor visibility and reduce Support team work load."
+        "Built performance and payout dashboards in Airtable and PowerBI to improve contractor visibility and reduce Support team workload.",
+        "Designed evaluation tasks that find where frontier models break on realistic frontend engineering work, writing the reference implementation and scoring rubric for each."
+      ]
+    },
+    {
+      role: "Full-Stack Developer, Founder",
+      company: "GFXTheory LLC",
+      duration: "2017 — Present",
+      location: "Remote",
+      achievements: [
+        "Built and maintained production websites and design systems for clients in gaming, real estate, freight, and tech, using React, TypeScript, Tailwind, and standard web tooling.",
+        "Shipped full-stack operations apps that businesses run on daily: customer check-in platforms, internal dashboards, and admin tooling with role-based access, audit logging, SMS authentication, and serverless APIs.",
+        "Delivered recurring development and UX work for companies with 50+ employees, focusing on usability, responsiveness, and maintainability."
       ]
     },
     {
       role: "Senior Frontend Developer, LLM Systems",
-      company: "[AI Company]",
+      company: "AI Company (under NDA)",
       duration: "Jan 2025 — Jul 2025",
       location: "San Francisco, CA",
       achievements: [
@@ -160,16 +216,6 @@ function App() {
         "Set up and evaluated LLMs (BART, Llama, MPT, Vulcan, etc.) in Databricks for internal use while maintaining strict client-data privacy.",
         "Built a sentiment-analysis system for client communications (Python + SQL) and integrated results into PowerBI dashboards used for ongoing internal monitoring."
       ]
-    },
-    {
-      role: "Full-Stack Developer, Founder",
-      company: "GFXTheory LLC",
-      duration: "2017 — 2025",
-      location: "Remote",
-      achievements: [
-        "Built and maintained production websites and design systems for clients in gaming, real estate, freight, and tech, using React, TypeScript, Tailwind, and standard web tooling.",
-        "Delivered recurring development and UX work for companies with 50+ employees, focusing on usability, responsiveness, and maintainability."
-      ]
     }
   ]
 
@@ -187,148 +233,231 @@ function App() {
             className={`mobile-menu-toggle ${isMobileMenuOpen ? 'menu-open' : ''}`}
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="nav-links"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           
-          <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-            {['about', 'experience', 'education', 'projects', 'contact', 'resume', 'linkedin', 'github'].map((section) => (
-              <button
-                key={section}
-                className={`nav-link ${activeSection === section ? 'active' : ''}`}
-                onClick={() => handleNavigation(section)}
+          <div
+            id="nav-links"
+            className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}
+          >
+            {navItems.map(({ id, href, external }) => (
+              <a
+                key={id}
+                href={href}
+                className={`nav-link ${activeSection === id ? 'active' : ''}`}
+                aria-current={activeSection === id ? 'true' : undefined}
+                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                {section}
-              </button>
+                {id}
+              </a>
             ))}
           </div>
+          <button
+            className="palette-trigger"
+            onClick={() => setIsPaletteOpen(true)}
+            aria-label={`Open command palette, ${SHORTCUT_LABEL}`}
+          >
+            {SHORTCUT_LABEL}
+          </button>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="about" className="section">
-        <div className="container">
-          <h2>Hi, I'm Seth Metcalf</h2>
-          <p>
-          I'm a full-stack engineer and data scientist who builds production systems end-to-end. From frontend interfaces to backend APIs, pipelines, and LLM tools. I care about shipping tools that people actually depend on.
-          </p>
-          <p>
-          Currently, I'm a contractor software engineer at Mercor and focus on improving large LLMs, as well as building my skillset in working with AI tools. 
-          </p>
-          <p>
-          I previously founded and ran GFXTheory LLC for eight years, designing and developing production websites and internal tools for companies across gaming, logistics, real estate, and tech.
-          </p>
-          <div className="hero-links">
+      <main>
+        {/* Hero Section */}
+        <section id="about" className="section">
+          <div className="container">
+            <h2>Hi, I'm Seth Metcalf</h2>
+            <p>
+            I'm a full-stack engineer and data scientist who builds production systems end-to-end: frontend interfaces, backend APIs, data pipelines, and LLM tools. I care about shipping things people actually depend on.
+            </p>
+            <p>
+            Currently, I'm a contract software engineer at Mercor, where I build the payment systems behind large-scale LLM training and review production code across hundreds of contributor projects.
+            </p>
+            <p>
+            I've also run GFXTheory LLC since 2017, designing and developing production websites, dashboards, and internal tools for companies across gaming, logistics, real estate, and tech.
+            </p>
+            <div className="hero-links">
+                <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
+                  <Github size={20} />
+                  teorii
+                </a>
+                <a href={"https://linkedin.com/in/seth-metcalf"} target="_blank" rel="noopener noreferrer">
+                  <Linkedin size={20} />
+                  seth-metcalf
+                </a>
+                <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
+                  <Mail size={20} />
+                  seth@metcalf.pro
+                </a>
+              </div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="section">
+          <div className="container">
+            <h2>Experience</h2>
+            <div className="experience-list">
+              {experience.map((job, index) => (
+                <div key={index} className="experience-item">
+                  <div className="experience-header">
+                    <h3>{job.role}</h3>
+                    <span className="duration">{job.duration}</span>
+                  </div>
+                  <div className="experience-meta">
+                    <span className="company">{job.company}</span>
+                    <span className="location">{job.location}</span>
+                  </div>
+                  <ul>
+                    {job.achievements.map((achievement, i) => (
+                      <li key={i}>{achievement}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section id="education" className="section">
+          <div className="container">
+            <h2>Education</h2>
+            <div className="experience-list">
+              {education.map((entry, index) => (
+                <div key={index} className="experience-item">
+                  <div className="experience-header">
+                    <h3>{entry.school}</h3>
+                    <span className="duration">{entry.duration}</span>
+                  </div>
+                  <div className="experience-meta">
+                    <span className="company">{entry.degree}</span>
+                    <span className="location">{entry.location}</span>
+                  </div>
+                  <p className="education-detail">{entry.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="section">
+          <div className="container">
+            <h2>Recent Projects</h2>
+            <div className="projects-list">
+              {projects.map((project, index) => (
+                <div key={index} className="project-item">
+                  <div className="project-header">
+                    <h3>{project.title}</h3>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${project.title} (opens in a new tab)`}
+                      >
+                        <ExternalLink size={16} />
+                      </a>
+                    )}
+                  </div>
+                  <p>{project.description}</p>
+                  <div className="project-tech">
+                    {project.tech.map((tech, techIndex) => (
+                      <span key={techIndex} className="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="section">
+          <div className="container">
+            <h2>Contact</h2>
+            <p>Let's build something. I'm always interested in new opportunities.</p>
+            <div className="contact-links">
               <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
-                teorii
+                github.com/teorii
               </a>
               <a href={"https://linkedin.com/in/seth-metcalf"} target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
-                seth-metcalf
+                linkedin.com/in/seth-metcalf
               </a>
               <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
                 <Mail size={20} />
                 seth@metcalf.pro
               </a>
             </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="section">
-        <div className="container">
-          <h2>Experience</h2>
-          <div className="experience-list">
-            {experience.map((job, index) => (
-              <div key={index} className="experience-item">
-                <div className="experience-header">
-                  <h3>{job.role}</h3>
-                  <span className="duration">{job.duration}</span>
-                </div>
-                <div className="experience-meta">
-                  <span className="company">{job.company}</span>
-                  <span className="location">{job.location}</span>
-                </div>
-                <ul>
-                  {job.achievements.map((achievement, i) => (
-                    <li key={i}>{achievement}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Education Section */}
-      <section id="education" className="section">
-        <div className="container">
-          <h2>Education</h2>
-          <div className="experience-list">
-            {education.map((entry, index) => (
-              <div key={index} className="experience-item">
-                <div className="experience-header">
-                  <h3>{entry.school}</h3>
-                  <span className="duration">{entry.duration}</span>
-                </div>
-                <div className="experience-meta">
-                  <span className="company">{entry.degree}</span>
-                  <span className="location">{entry.location}</span>
-                </div>
-                <p className="education-detail">{entry.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="section">
-        <div className="container">
-          <h2>Recent Projects</h2>
-          <div className="projects-list">
-            {projects.map((project, index) => (
-              <div key={index} className="project-item">
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink size={16} />
+      {/* Command Palette */}
+      {isPaletteOpen && (
+        <div className="palette-backdrop" onClick={() => setIsPaletteOpen(false)}>
+          <div
+            className="palette"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command palette"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <input
+              className="palette-input"
+              type="text"
+              autoFocus
+              value={paletteQuery}
+              placeholder="jump to..."
+              role="combobox"
+              aria-expanded="true"
+              aria-controls="palette-results"
+              aria-activedescendant={
+                paletteResults.length ? `palette-option-${paletteIndex}` : undefined
+              }
+              onChange={(event) => {
+                setPaletteQuery(event.target.value)
+                setPaletteIndex(0)
+              }}
+              onKeyDown={handlePaletteKeyDown}
+            />
+            <ul
+              className="palette-results"
+              id="palette-results"
+              role="listbox"
+              ref={paletteResultsRef}
+            >
+              {paletteResults.map((item, index) => (
+                <li
+                  key={item.id}
+                  id={`palette-option-${index}`}
+                  role="option"
+                  aria-selected={index === paletteIndex}
+                >
+                  <a
+                    href={item.href}
+                    className={`palette-item ${index === paletteIndex ? 'active' : ''}`}
+                    {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    onMouseEnter={() => setPaletteIndex(index)}
+                    onClick={() => setIsPaletteOpen(false)}
+                  >
+                    <span>{item.id}</span>
+                    <span className="palette-kind">{item.external ? 'external' : 'section'}</span>
                   </a>
-                </div>
-                <p>{project.description}</p>
-                <div className="project-tech">
-                  {project.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+                </li>
+              ))}
+              {paletteResults.length === 0 && <li className="palette-empty">no matches</li>}
+            </ul>
           </div>
         </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="section">
-        <div className="container">
-          <h2>Contact</h2>
-          <p>Let's build something. I'm always interested in new opportunities.</p>
-          <div className="contact-links">
-            <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
-              <Github size={20} />
-              github.com/teorii
-            </a>
-            <a href={"https://linkedin.com/in/seth-metcalf"} target="_blank" rel="noopener noreferrer">
-              <Linkedin size={20} />
-              linkedin.com/in/seth-metcalf
-            </a>
-            <a href="mailto:seth@metcalf.pro" target="_blank" rel="noopener noreferrer">
-              <Mail size={20} />
-              seth@metcalf.pro
-            </a>
-          </div>
-        </div>
-      </section>
+      )}
     </div>
   )
 }
