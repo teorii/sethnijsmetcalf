@@ -1,0 +1,16 @@
+# Seth Metcalf
+
+> Full-stack engineer and data scientist. Builds production systems end to end: frontend interfaces, backend APIs, data pipelines, and LLM tooling.
+
+## Sections
+
+- [About](https://sethnijsmetcalf.com/#about): background and current focus
+- [Experience](https://sethnijsmetcalf.com/#experience): Mercor, GFXTheory LLC, and Berkshire Hathaway Homestate Companies
+- [Education](https://sethnijsmetcalf.com/#education): UC Berkeley, B.A. in Data Science and Economics
+- [Projects](https://sethnijsmetcalf.com/#projects): selected recent work
+- [Contact](https://sethnijsmetcalf.com/#contact): email and profiles
+
+## Links
+
+- [GitHub](https://github.com/teorii)
+- [LinkedIn](https://linkedin.com/in/seth-metcalf)
