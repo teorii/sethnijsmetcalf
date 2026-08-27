@@ -45,7 +45,12 @@ Nearly everything lives in two files:
 - No tests: this is a static portfolio page, do not invent tests for it.
   Verify changes by running the dev server and looking at the page.
 
-## Unknowns
+## Deployment
 
-- Deployment method is not detectable from the repo (no CI, no host config).
-  Ask before assuming how the site ships.
+- Pushing to `main` publishes to https://sethnijsmetcalf.com (confirmed
+  2026-08-21). The site also serves from gfxtheory.com, and the canonical URL
+  points at sethnijsmetcalf.com.
+- The host itself is still not visible in the repo (no CI config, no host
+  files), so ask before changing anything deploy-related.
+- Verified live after deploy: Lighthouse 100 across accessibility, best
+  practices, SEO, and agentic browsing, with no failing audits.

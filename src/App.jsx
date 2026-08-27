@@ -139,35 +139,34 @@ function App() {
       description: "Ledger app for card-break streamers and the agency that manages them. Tracks purchases, expenses, stream-by-stream profit, and payouts, with a separate workspace per streamer. Inventory is derived from transactions rather than stored, and a nightly job pulls card prices so valuations stay current.",
       tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Supabase", "PostgreSQL", "Drizzle ORM", "Cloudflare Workers"],
       link: null
-    },
+    }
+  ]
+
+  // Everything else, listed compactly rather than as full cards
+  const otherProjects = [
     {
       title: "Currency Exchange Rate Tracker",
-      description: "Full-stack currency tracking application with real-time exchange rates, historical data analysis, and TradingView-style interactive charts. Features automated hourly data fetching via background jobs, currency pair management, and a RESTful API. Built with FastAPI backend and React frontend with Redux state management.",
-      tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Redux", "Tailwind CSS", "Recharts"],
+      description: "Exchange rate tracker with hourly rate ingestion and historical charts.",
       link: "https://github.com/teorii/currency-tracker"
     },
     {
       title: "Risen Logistics",
-      description: "Full-stack logistics and freight forwarding website with custom branding, responsive UI, integrated contact routing, and production deployment for a live commercial client.",
-      tech: ["React", "JavaScript", "CSS", "HTML", "GoDaddy", "Web3Forms"],
+      description: "Marketing site for a freight forwarding company.",
       link: "https://risencargo.com"
     },
     {
       title: "DCG",
-      description: "Modern business site built with Next.js and server-side rendering for performance and SEO. Developed reusable components, responsive layouts, and deployment pipelines across Netlify and Cloudflare.",
-      tech: ["Next.js", "TypeScript", "React", "CSS", "Cloudflare", "Netlify"],
+      description: "Marketing site for a business services company, built on Next.js.",
       link: "https://dcgpros.com"
     },
     // {
     //   title: "Jessica Metcalf Real Estate",
-    //   description: "Professional real estate site featuring property listings, testimonials, and lead-capture workflows. Delivered full design, development, SEO optimization, and Google Analytics integration.",
-    //   tech: ["WordPress", "PHP", "CSS", "JavaScript", "SEO", "Google Analytics"],
+    //   description: "Marketing site for a real estate agent, with listings and lead capture.",
     //   link: "http://jessicasellshomes.com/"
     // },
     {
       title: "AI Poker Bot",
-      description: "Built an autonomous poker-playing agent with friends back in college that ingests live game state and makes real-time decisions using poker heuristics and LLM-based strategy. Engineered Puppeteer + PokerNow API scraping to capture player actions and board state with minimal latency. Created a SQLite-backed opponent profiling system with state validation and safety checks to ensure consistent in-game actions.",
-      tech: ["TypeScript", "Node.js", "Express", "Puppeteer", "SQLite"],
+      description: "Poker agent built with friends in college. Scrapes live game state and plays from heuristics plus an LLM.",
       link: "https://github.com/teorii/pokernow-gpt"
     }
   ]
@@ -360,7 +359,7 @@ function App() {
         {/* Projects Section */}
         <section id="projects" className="section">
           <div className="container">
-            <h2>Recent Projects</h2>
+            <h2>Selected Work</h2>
             <div className="projects-list">
               {projects.map((project, index) => (
                 <div key={index} className="project-item">
@@ -384,6 +383,24 @@ function App() {
                     ))}
                   </div>
                 </div>
+              ))}
+            </div>
+
+            <div className="project-list">
+              <h3>also built</h3>
+              {otherProjects.map((project) => (
+                <a
+                  key={project.title}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-row"
+                  aria-label={`${project.title} (opens in a new tab)`}
+                >
+                  <span className="project-row-name">{project.title}</span>
+                  <span className="project-row-desc">{project.description}</span>
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
               ))}
             </div>
           </div>

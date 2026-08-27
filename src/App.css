@@ -623,3 +623,69 @@ body {
   outline: 2px solid var(--accent-color);
   outline-offset: 3px;
 }
+
+/* Compact list for everything outside the selected work */
+.project-list {
+  margin-top: 3rem;
+}
+
+.project-list h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: lowercase;
+  margin-bottom: 1rem;
+}
+
+.project-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.project-row:last-child {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-row:hover {
+  color: var(--text-primary);
+}
+
+.project-row-name {
+  flex-shrink: 0;
+  min-width: 14rem;
+  color: var(--text-primary);
+}
+
+.project-row:hover .project-row-name {
+  color: var(--accent-color);
+}
+
+.project-row-desc {
+  flex: 1;
+}
+
+.project-row svg {
+  flex-shrink: 0;
+  opacity: 0.45;
+}
+
+.project-row:hover svg {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .project-row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .project-row-name {
+    min-width: 0;
+  }
+}
