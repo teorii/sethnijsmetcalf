@@ -28,7 +28,7 @@ export const projects = [
     title: "BreakLedger",
     description: "Ledger app for card-break streamers and the agency that manages them. Tracks purchases, expenses, stream-by-stream profit, and payouts, with a separate workspace per streamer. Inventory is derived from transactions rather than stored, and a nightly job pulls card prices so valuations stay current.",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Supabase", "PostgreSQL", "Drizzle ORM", "Cloudflare Workers"],
-    live: false,
+    live: true,
     private: true,
     link: null,
     featured: true

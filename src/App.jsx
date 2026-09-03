@@ -347,7 +347,7 @@ function App() {
               ))}
             </div>
 
-            <div className="project-list">
+            <div className="project-archive">
               <h3>also built</h3>
               {otherProjects.map((project) => (
                 <a
