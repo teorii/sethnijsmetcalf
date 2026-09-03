@@ -1,0 +1,98 @@
+/* Terminal-styled project archive. Reuses the design tokens from App.css. */
+
+.terminal {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  cursor: text;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem clamp(1rem, 5vw, 3rem);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--nav-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.terminal-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.terminal-exit {
+  color: var(--text-light);
+  text-decoration: none;
+  text-transform: lowercase;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.terminal-exit:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 1.5rem clamp(1rem, 5vw, 3rem) 3rem;
+}
+
+.terminal-block {
+  margin-bottom: 1rem;
+}
+
+.terminal-block.is-error {
+  color: var(--accent-hover);
+}
+
+/* Preserve the column padding built in JS, but still wrap on narrow screens */
+.terminal-line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.terminal-prompt {
+  color: var(--accent-color);
+  user-select: none;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.terminal-input {
+  flex: 1;
+  min-width: 8rem;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  color: var(--text-primary);
+  font-family: inherit;
+  /* 16px keeps mobile Safari from zooming on focus */
+  font-size: max(1rem, 0.875rem);
+  caret-color: var(--accent-color);
+}
+
+@media (max-width: 700px) {
+  .terminal {
+    font-size: 0.8125rem;
+  }
+}

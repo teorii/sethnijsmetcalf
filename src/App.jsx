@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import './App.css'
 import resume from './assets/SethM_Resume.pdf'
+import { featuredProjects, otherProjects } from './projects-data'
 
 const SECTIONS = ['about', 'experience', 'education', 'projects', 'contact']
 const SHORTCUT_LABEL = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘K' : 'ctrl K'
@@ -120,56 +121,6 @@ function App() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
-
-  const projects = [
-    {
-      title: "Serving Good Market Check-In",
-      description: "Check-in system a community food market runs on-site during market hours. Members sign up and check in with an SMS code, pick a shopping group, and get a randomized place in line once the window closes. Admin side covers members, schedules, groups, messaging, blacklist, and a QR scanner.",
-      tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zod", "Supabase", "PostgreSQL", "Row-Level Security", "Edge Functions", "Twilio", "Vitest"],
-      link: "https://app.servinggood.org/"
-    },
-    {
-      title: "Risen IQ",
-      description: "Internal operations platform a freight forwarding company runs day to day. TMS, WMS, KPI dashboards, quote and domestic desks, SOP management, and a PWA for shift turnover. Five user roles, MFA on admin actions, audit logging, and scheduled KPI syncs from their email tooling.",
-      tech: ["JavaScript", "Supabase", "PostgreSQL", "Row-Level Security", "Netlify Functions", "PWA", "Anthropic API"],
-      link: null
-    },
-    {
-      title: "BreakLedger",
-      description: "Ledger app for card-break streamers and the agency that manages them. Tracks purchases, expenses, stream-by-stream profit, and payouts, with a separate workspace per streamer. Inventory is derived from transactions rather than stored, and a nightly job pulls card prices so valuations stay current.",
-      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Supabase", "PostgreSQL", "Drizzle ORM", "Cloudflare Workers"],
-      link: null
-    }
-  ]
-
-  // Everything else, listed compactly rather than as full cards
-  const otherProjects = [
-    {
-      title: "Currency Exchange Rate Tracker",
-      description: "Exchange rate tracker with hourly rate ingestion and historical charts.",
-      link: "https://github.com/teorii/currency-tracker"
-    },
-    {
-      title: "Risen Logistics",
-      description: "Marketing site for a freight forwarding company.",
-      link: "https://risencargo.com"
-    },
-    {
-      title: "DCG",
-      description: "Marketing site for a business services company, built on Next.js.",
-      link: "https://dcgpros.com"
-    },
-    // {
-    //   title: "Jessica Metcalf Real Estate",
-    //   description: "Marketing site for a real estate agent, with listings and lead capture.",
-    //   link: "http://jessicasellshomes.com/"
-    // },
-    {
-      title: "AI Poker Bot",
-      description: "Poker agent built with friends in college. Scrapes live game state and plays from heuristics plus an LLM.",
-      link: "https://github.com/teorii/pokernow-gpt"
-    }
-  ]
 
   const education = [
     {
@@ -330,6 +281,9 @@ function App() {
                   </ul>
                 </div>
               ))}
+              <a className="archive-link" href="/projects.html">
+                browse all projects
+              </a>
             </div>
           </div>
         </section>
@@ -359,22 +313,29 @@ function App() {
         {/* Projects Section */}
         <section id="projects" className="section">
           <div className="container">
-            <h2>Selected Work</h2>
+            <h2>Recent Work</h2>
             <div className="projects-list">
-              {projects.map((project, index) => (
+              {featuredProjects.map((project, index) => (
                 <div key={index} className="project-item">
                   <div className="project-header">
                     <h3>{project.title}</h3>
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${project.title} (opens in a new tab)`}
-                      >
-                        <ExternalLink size={16} />
-                      </a>
-                    )}
+                    <div className="project-meta">
+                      {project.live && <span className="project-status is-live">live</span>}
+                      {project.private ? (
+                        <span className="project-status">private</span>
+                      ) : (
+                        project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${project.title} (opens in a new tab)`}
+                          >
+                            <ExternalLink size={16} />
+                          </a>
+                        )
+                      )}
+                    </div>
                   </div>
                   <p>{project.description}</p>
                   <div className="project-tech">
