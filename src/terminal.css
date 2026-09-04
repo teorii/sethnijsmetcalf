@@ -96,3 +96,41 @@
     font-size: 0.8125rem;
   }
 }
+
+.terminal-entry {
+  margin-bottom: 0.9rem;
+}
+
+.terminal-slug {
+  color: var(--text-light);
+  user-select: all;
+}
+
+.terminal-name {
+  color: var(--text-primary);
+}
+
+.terminal-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.terminal-link:hover {
+  border-bottom-color: var(--accent-color);
+}
+
+.terminal-flags {
+  color: var(--text-light);
+}
+
+.terminal-desc {
+  padding-left: 2rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 700px) {
+  .terminal-desc {
+    padding-left: 1rem;
+  }
+}

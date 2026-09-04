@@ -3,6 +3,12 @@ import { projects } from './projects-data'
 import './terminal.css'
 
 const PROMPT = 'seth@sethnijsmetcalf:~/projects$'
+const SLUG_WIDTH = Math.max(...projects.map((project) => project.slug.length)) + 2
+
+const BANNER = [
+  "seth metcalf's project archive.",
+  "click any project to open it, or type 'help' if you'd rather use commands."
+]
 
 const HELP = [
   'available commands',
@@ -14,34 +20,77 @@ const HELP = [
   '  home              back to the main site',
   '  help              this list',
   '',
-  'names are the short slugs shown by ls. tab completes them.'
+  'names are the short slugs on the left. tab completes them.'
 ]
 
-// `ls` output, padded into columns so it reads like a real listing
-function listing() {
-  const width = Math.max(...projects.map((project) => project.slug.length))
-  return [
-    `${projects.length} projects`,
-    '',
-    ...projects.map((project) => {
-      const flags = [project.live ? 'live' : null, project.private ? 'private' : null]
-        .filter(Boolean)
-        .join(', ')
-      return `  ${project.slug.padEnd(width + 2)}${project.title}${flags ? `  [${flags}]` : ''}`
-    })
-  ]
+function flagsFor(project) {
+  return [project.live ? 'live' : null, project.private ? 'private' : null].filter(Boolean)
 }
 
-function details(project) {
-  return [
-    project.title,
-    '',
-    project.description,
-    '',
-    `  stack     ${project.tech.join(', ')}`,
-    `  status    ${project.live ? 'live' : 'not currently live'}${project.private ? ', private' : ''}`,
-    `  link      ${project.private || !project.link ? 'private, no public link' : project.link}`
-  ]
+// Public projects render their title as a real link, so the page is usable
+// without typing a single command
+function ProjectName({ project }) {
+  if (project.private || !project.link) {
+    return <span className="terminal-name">{project.title}</span>
+  }
+  return (
+    <a
+      className="terminal-name terminal-link"
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {project.title}
+    </a>
+  )
+}
+
+function Listing() {
+  return (
+    <div className="terminal-block">
+      <div className="terminal-line">{projects.length} projects</div>
+      <div className="terminal-line"> </div>
+      {projects.map((project) => {
+        const flags = flagsFor(project)
+        return (
+          <div key={project.slug} className="terminal-entry">
+            <div className="terminal-line">
+              <span className="terminal-slug">{project.slug.padEnd(SLUG_WIDTH)}</span>
+              <ProjectName project={project} />
+              {flags.length > 0 && <span className="terminal-flags">  [{flags.join(', ')}]</span>}
+            </div>
+            <div className="terminal-line terminal-desc">{project.description}</div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function Details({ project }) {
+  const flags = flagsFor(project)
+  return (
+    <div className="terminal-block">
+      <div className="terminal-line">
+        <ProjectName project={project} />
+        {flags.length > 0 && <span className="terminal-flags">  [{flags.join(', ')}]</span>}
+      </div>
+      <div className="terminal-line"> </div>
+      <div className="terminal-line">{project.description}</div>
+      <div className="terminal-line"> </div>
+      <div className="terminal-line">{`  stack     ${project.tech.join(', ')}`}</div>
+      <div className="terminal-line">
+        {'  link      '}
+        {project.private || !project.link ? (
+          'private, no public link'
+        ) : (
+          <a className="terminal-link" href={project.link} target="_blank" rel="noopener noreferrer">
+            {project.link}
+          </a>
+        )}
+      </div>
+    </div>
+  )
 }
 
 function find(name) {
@@ -57,9 +106,9 @@ function find(name) {
 
 export default function Terminal() {
   const [history, setHistory] = useState(() => [
-    { type: 'output', lines: ["seth metcalf's project archive. type 'help' for commands."] },
+    { type: 'output', lines: BANNER },
     { type: 'command', text: 'ls' },
-    { type: 'output', lines: listing() }
+    { type: 'listing' }
   ])
   const [input, setInput] = useState('')
   const [past, setPast] = useState([])
@@ -92,14 +141,14 @@ export default function Terminal() {
         print([echo, { type: 'output', lines: HELP }])
         return
       case 'ls':
-        print([echo, { type: 'output', lines: listing() }])
+        print([echo, { type: 'listing' }])
         return
       case 'cat': {
         const project = find(argument)
         print([
           echo,
           project
-            ? { type: 'output', lines: details(project) }
+            ? { type: 'details', project }
             : { type: 'error', lines: [`cat: ${argument || 'missing name'}: no such project`] }
         ])
         return
@@ -157,12 +206,7 @@ export default function Terminal() {
   }
 
   return (
-    <main
-      className="terminal"
-      onClick={() => {
-        if (!window.getSelection()?.toString()) inputRef.current?.focus()
-      }}
-    >
+    <main className="terminal">
       <div className="terminal-bar">
         <span className="terminal-title">projects</span>
         <a className="terminal-exit" href="/">
@@ -180,6 +224,8 @@ export default function Terminal() {
                 </div>
               )
             }
+            if (entry.type === 'listing') return <Listing key={index} />
+            if (entry.type === 'details') return <Details key={index} project={entry.project} />
             return (
               <div
                 key={index}
@@ -195,7 +241,13 @@ export default function Terminal() {
           })}
         </div>
 
-        <div className="terminal-input-row">
+        {/* Clicking blank space focuses the prompt, but only for people who want it */}
+        <div
+          className="terminal-input-row"
+          onClick={() => {
+            if (!window.getSelection()?.toString()) inputRef.current?.focus()
+          }}
+        >
           <label className="terminal-prompt" htmlFor="terminal-input">
             {PROMPT}
           </label>
