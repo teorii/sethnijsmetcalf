@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Github, Linkedin, Mail, ExternalLink, Menu, X } from 'lucide-react'
 import './App.css'
 import resume from './assets/SethM_Resume.pdf'
-import { featuredProjects, otherProjects } from './projects-data'
+import { featuredProjects } from './projects-data'
 
 const SECTIONS = ['about', 'experience', 'education', 'projects', 'contact']
 const SHORTCUT_LABEL = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘K' : 'ctrl K'
@@ -281,9 +281,6 @@ function App() {
                   </ul>
                 </div>
               ))}
-              <a className="archive-link" href="/projects.html">
-                browse all projects
-              </a>
             </div>
           </div>
         </section>
@@ -347,23 +344,9 @@ function App() {
               ))}
             </div>
 
-            <div className="project-archive">
-              <h3>also built</h3>
-              {otherProjects.map((project) => (
-                <a
-                  key={project.title}
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-row"
-                  aria-label={`${project.title} (opens in a new tab)`}
-                >
-                  <span className="project-row-name">{project.title}</span>
-                  <span className="project-row-desc">{project.description}</span>
-                  <ExternalLink size={14} aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <a className="archive-link" href="/projects.html">
+              browse all projects
+            </a>
           </div>
         </section>
 

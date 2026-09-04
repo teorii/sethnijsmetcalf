@@ -16,7 +16,7 @@ export const projects = [
   {
     slug: "risen-iq",
     title: "Risen IQ",
-    description: "Internal operations platform a freight forwarding company runs day to day. TMS, WMS, KPI dashboards, quote and domestic desks, SOP management, and a PWA for shift turnover. Five user roles, MFA on admin actions, audit logging, and scheduled KPI syncs from their email tooling.",
+    description: "Internal operations platform a freight forwarding company runs day to day. I built their marketing site first, then they hired me to build the system their team works out of. TMS, WMS, KPI dashboards, quote and domestic desks, and a PWA for shift turnover. Five user roles, MFA on admin actions, audit logging, and scheduled KPI syncs from their email tooling.",
     tech: ["JavaScript", "Supabase", "PostgreSQL", "Row-Level Security", "Netlify Functions", "PWA", "Anthropic API"],
     live: true,
     private: true,
