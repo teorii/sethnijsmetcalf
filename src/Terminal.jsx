@@ -3,7 +3,7 @@ import { projects } from './projects-data'
 import './terminal.css'
 
 const PROMPT = 'seth@sethnijsmetcalf:~/projects$'
-const SLUG_WIDTH = Math.max(...projects.map((project) => project.slug.length)) + 2
+const SLUG_CHARS = Math.max(...projects.map((project) => project.slug.length))
 
 const BANNER = [
   "seth metcalf's project archive.",
@@ -45,21 +45,23 @@ function ProjectName({ project }) {
   )
 }
 
+// Each entry is a grid, so a title that wraps stays in its own column instead
+// of falling back under the slug the way padded spaces would
 function Listing() {
   return (
-    <div className="terminal-block">
+    <div className="terminal-block" style={{ '--slug-col': `${SLUG_CHARS}ch` }}>
       <div className="terminal-line">{projects.length} projects</div>
       <div className="terminal-line"> </div>
       {projects.map((project) => {
         const flags = flagsFor(project)
         return (
           <div key={project.slug} className="terminal-entry">
-            <div className="terminal-line">
-              <span className="terminal-slug">{project.slug.padEnd(SLUG_WIDTH)}</span>
+            <span className="terminal-slug">{project.slug}</span>
+            <span>
               <ProjectName project={project} />
-              {flags.length > 0 && <span className="terminal-flags">  [{flags.join(', ')}]</span>}
-            </div>
-            <div className="terminal-line terminal-desc">{project.description}</div>
+              {flags.length > 0 && <span className="terminal-flags"> [{flags.join(', ')}]</span>}
+            </span>
+            <div className="terminal-desc">{project.description}</div>
           </div>
         )
       })}
@@ -115,8 +117,13 @@ export default function Terminal() {
   const [pastIndex, setPastIndex] = useState(-1)
   const inputRef = useRef(null)
   const endRef = useRef(null)
+  // Only follow output the visitor asked for. Scrolling on mount would carry
+  // them past the banner and the listing before they had read a word.
+  const pendingScroll = useRef(false)
 
   useEffect(() => {
+    if (!pendingScroll.current) return
+    pendingScroll.current = false
     endRef.current?.scrollIntoView({ block: 'end' })
   }, [history])
 
@@ -126,6 +133,7 @@ export default function Terminal() {
     const text = raw.trim()
     if (!text) return
 
+    pendingScroll.current = true
     setPast((prev) => [text, ...prev])
     setPastIndex(-1)
 

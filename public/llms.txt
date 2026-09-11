@@ -8,6 +8,7 @@
 - [Experience](https://sethnijsmetcalf.com/#experience): Mercor, GFXTheory LLC, and Berkshire Hathaway Homestate Companies
 - [Education](https://sethnijsmetcalf.com/#education): UC Berkeley, B.A. in Data Science and Economics
 - [Projects](https://sethnijsmetcalf.com/#projects): selected recent work
+- [All projects](https://sethnijsmetcalf.com/projects.html): the full archive, presented as a terminal
 - [Contact](https://sethnijsmetcalf.com/#contact): email and profiles
 
 ## Links

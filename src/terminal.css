@@ -9,7 +9,6 @@
   font-family: var(--font-primary);
   font-size: 0.875rem;
   line-height: 1.7;
-  cursor: text;
 }
 
 .terminal-bar {
@@ -75,6 +74,7 @@
   align-items: baseline;
   gap: 0.5rem;
   flex-wrap: wrap;
+  cursor: text;
 }
 
 .terminal-input {
@@ -87,7 +87,7 @@
   color: var(--text-primary);
   font-family: inherit;
   /* 16px keeps mobile Safari from zooming on focus */
-  font-size: max(1rem, 0.875rem);
+  font-size: 1rem;
   caret-color: var(--accent-color);
 }
 
@@ -97,7 +97,11 @@
   }
 }
 
+/* Slug column, then title and description; the column width is set from JS */
 .terminal-entry {
+  display: grid;
+  grid-template-columns: var(--slug-col, 16ch) 1fr;
+  column-gap: 1rem;
   margin-bottom: 0.9rem;
 }
 
@@ -125,12 +129,19 @@
 }
 
 .terminal-desc {
-  padding-left: 2rem;
+  grid-column: 2;
   color: var(--text-secondary);
 }
 
+/* Narrow screens stack the three parts instead of squeezing two columns */
 @media (max-width: 700px) {
+  .terminal-entry {
+    grid-template-columns: 1fr;
+    row-gap: 0.15rem;
+  }
+
   .terminal-desc {
+    grid-column: 1;
     padding-left: 1rem;
   }
 }
