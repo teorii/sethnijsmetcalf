@@ -136,7 +136,7 @@ function App() {
     {
       role: "Software Engineer",
       company: "Mercor",
-      duration: "Aug 2025 — Present",
+      duration: "Aug 2025 — Sep 2026",
       location: "San Francisco, CA",
       achievements: [
         "Built and maintained the end-to-end bonus payment system for one of the company's larger projects, validating and sending weekly payouts exceeding $100K to hundreds of contractors across Airtable, HEX, and Excel.",
@@ -240,7 +240,7 @@ function App() {
             Through GFXTheory, which I've run since 2017, I build and maintain the software small businesses run on: a check-in platform a community food market uses on-site, and an internal operations platform a freight forwarding company works out of every day. Both are live with real users, and I maintain them end to end.
             </p>
             <p>
-            I've also contracted at Mercor since 2025. I built the contractor bonus payment system on one of their larger projects, which sent weekly payouts over $100K. These days I work as a software engineer designing evaluation tasks that push the limits of frontier models.
+            I also contracted at Mercor from 2025 to 2026. I built the contractor bonus payment system on one of their larger projects, which sent weekly payouts over $100K. After that I worked as a software engineer designing evaluation tasks that pushed the limits of frontier models.
             </p>
             <div className="hero-links">
                 <a href={"https://github.com/teorii"} target="_blank" rel="noopener noreferrer">
